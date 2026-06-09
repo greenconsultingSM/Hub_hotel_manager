@@ -1,0 +1,36 @@
+import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site";
+import { getPillar, getSpokes, type Article } from "@/lib/articles";
+
+// Sitemap — SOLO le pagine indicizzabili (index: sì).
+// Escluse di proposito le noindex,follow: legali (privacy/cookie/termini).
+// Il calcolatore commissioni OTA è indicizzato dal 2026-06-09 (go-live).
+// Vedi seo-geo-tecnico.md §A/§E.
+// lastModified: dal frontmatter `updated` per gli articoli; data di lancio per
+// le landing statiche (bump manuale quando il contenuto cambia).
+
+const LAUNCH = "2026-06-08";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = SITE.url;
+
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: `${base}/`, lastModified: LAUNCH, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${base}/chi-siamo`, lastModified: LAUNCH, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/glossario`, lastModified: LAUNCH, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/glossario/disintermediazione`, lastModified: LAUNCH, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/risorse/guida-disintermediazione`, lastModified: LAUNCH, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/strumenti/calcolatore-commissioni-ota`, lastModified: "2026-06-09", changeFrequency: "monthly", priority: 0.7 },
+  ];
+
+  const articles: MetadataRoute.Sitemap = [getPillar(), ...getSpokes()]
+    .filter((a): a is Article => a !== null && a.frontmatter.index !== false)
+    .map((a) => ({
+      url: `${base}${a.href}`,
+      lastModified: a.frontmatter.updated ?? LAUNCH,
+      changeFrequency: "monthly" as const,
+      priority: a.isPillar ? 0.9 : 0.8,
+    }));
+
+  return [...staticPages, ...articles];
+}
