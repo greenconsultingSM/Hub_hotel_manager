@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "./Icon";
 import { SubscribeForm } from "./SubscribeForm";
 import { SITE, FOOTER_COLS, LEGAL_LINKS } from "@/lib/site";
@@ -45,7 +46,7 @@ export function Footer() {
           <span className="pp">Un progetto di</span>
           {SITE.partners.map((p) => (
             <a className="pplogo" key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
-              {p.name}
+              <Image src={p.logo} alt={p.name} width={p.logoWidth} height={p.logoHeight} />
             </a>
           ))}
           <span className="pp" style={{ flexBasis: "100%", marginTop: 4 }}>

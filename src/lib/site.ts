@@ -10,9 +10,22 @@ export const SITE = {
   // Dominio ancora da definire: aggiornare quando si sceglie.
   url: "https://hubhotelmanager.it",
   locale: "it_IT",
+  // Loghi in public/partners/ (PNG trasparenti, resi bianchi via CSS nel footer).
   partners: [
-    { name: "Green Consulting", url: "https://greenconsulting.it" },
-    { name: "Staymore", url: "https://staymore.it" },
+    {
+      name: "Green Consulting",
+      url: "https://greenconsulting.it",
+      logo: "/partners/green-consulting.png",
+      logoWidth: 265,
+      logoHeight: 60,
+    },
+    {
+      name: "Tourism Innovation Lab",
+      url: "https://www.tourisminnovationlab.it/",
+      logo: "/partners/tourism-innovation-lab.png",
+      logoWidth: 200,
+      logoHeight: 63,
+    },
   ],
 } as const;
 

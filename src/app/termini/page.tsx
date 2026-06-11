@@ -15,7 +15,7 @@ export default function Termini() {
     <LegalLayout title="Termini e condizioni d'uso" updated="8 giugno 2026" dateLabel="Ultimo aggiornamento">
       <p className="intro">
         Il sito Hub Hotel Manager (di seguito il &quot;Sito&quot;) è un hub di contenuti informativi dedicato agli
-        albergatori indipendenti, gestito da <strong>Staymore</strong>{" "}
+        albergatori indipendenti, gestito da <strong>Tourism Innovation Lab</strong>{" "}
         <PH>[ragione sociale, sede legale e P.IVA]</PH> (di seguito il &quot;Titolare&quot; o il &quot;Gestore&quot;),
         nell&apos;ambito di un progetto realizzato insieme a <strong>Green Consulting</strong>.
       </p>
@@ -46,7 +46,7 @@ export default function Termini() {
       </p>
       <p>
         I marchi e i segni distintivi presenti sul Sito, inclusi &quot;Hub Hotel Manager&quot;, &quot;Green
-        Consulting&quot; e &quot;Staymore&quot;, appartengono ai rispettivi titolari e non possono essere utilizzati
+        Consulting&quot; e &quot;Tourism Innovation Lab&quot;, appartengono ai rispettivi titolari e non possono essere utilizzati
         senza autorizzazione scritta.
       </p>
       <p>
@@ -144,7 +144,7 @@ export default function Termini() {
       <p>Ti invitiamo a consultare periodicamente questa pagina per verificare eventuali aggiornamenti.</p>
 
       <p>
-        Per qualsiasi richiesta relativa ai presenti Termini puoi fare riferimento al Titolare, <strong>Staymore</strong>{" "}
+        Per qualsiasi richiesta relativa ai presenti Termini puoi fare riferimento al Titolare, <strong>Tourism Innovation Lab</strong>{" "}
         <PH>[recapiti]</PH>. Per il trattamento dei dati personali, consulta l&apos;
         <Link href="/privacy">Informativa privacy</Link>; per l&apos;uso dei cookie, la{" "}
         <Link href="/cookie">Cookie policy</Link>.

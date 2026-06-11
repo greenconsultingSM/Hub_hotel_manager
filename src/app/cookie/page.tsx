@@ -27,7 +27,7 @@ export default function Cookie() {
         e cambiare idea quando vuoi.
       </p>
       <p>
-        Il titolare del trattamento dei dati raccolti tramite i cookie di questo sito è <strong>Staymore</strong>{" "}
+        Il titolare del trattamento dei dati raccolti tramite i cookie di questo sito è <strong>Tourism Innovation Lab</strong>{" "}
         <PH>[ragione sociale, sede e dati di contatto da inserire in fase di validazione legale]</PH>. I dati possono
         essere condivisi con <strong>Green Consulting</strong> per il routing dei contatti, come descritto nella{" "}
         <Link href="/privacy">privacy policy</Link>.
@@ -151,7 +151,7 @@ export default function Cookie() {
         e come esercitare i tuoi diritti, consulta la nostra <Link href="/privacy">privacy policy</Link>.
       </p>
       <p>
-        <PH>[Dati di contatto del titolare Staymore e dell&apos;eventuale responsabile/DPO — da inserire in fase di validazione legale.]</PH>
+        <PH>[Dati di contatto del titolare Tourism Innovation Lab e dell&apos;eventuale responsabile/DPO — da inserire in fase di validazione legale.]</PH>
       </p>
     </LegalLayout>
   );

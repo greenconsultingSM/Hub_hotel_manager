@@ -81,7 +81,7 @@ const personas = [
 const faqItems: FaqEntry[] = [
   {
     q: "Cos'è Hub Hotel Manager?",
-    a: "È un hub di contenuti dedicato agli albergatori indipendenti italiani: guide pratiche, strumenti e analisi per disintermediare le OTA e far crescere i ricavi diretti. È un progetto di Green Consulting e Staymore. Al lancio è attivo il cluster sulla disintermediazione e sulle commissioni OTA; revenue management e upselling sono in arrivo.",
+    a: "È un hub di contenuti dedicato agli albergatori indipendenti italiani: guide pratiche, strumenti e analisi per disintermediare le OTA e far crescere i ricavi diretti. È un progetto di Green Consulting e Tourism Innovation Lab. Al lancio è attivo il cluster sulla disintermediazione e sulle commissioni OTA; revenue management e upselling sono in arrivo.",
   },
   {
     q: "Per chi è?",

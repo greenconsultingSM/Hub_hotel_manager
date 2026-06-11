@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { getAllMagazinePosts, MAGAZINE_BASE } from "@/lib/magazine";
@@ -61,9 +62,16 @@ export default function RisorseHub() {
             </Link>
 
             <Link className="gcard reveal" data-d="1" href="/risorse/guida-disintermediazione">
-              <div className="thumb cover-gen amber">
-                <Icon name="book" />
-                <span className="cg-label">Ebook gratuito</span>
+              {/* Cover fotografica come la card Magazine accanto. next/image con
+                  fill richiede position:relative + overflow:hidden sul contenitore. */}
+              <div className="thumb" style={{ position: "relative", overflow: "hidden" }}>
+                <Image
+                  src="/covers/ebook-ota.jpg"
+                  alt="Receptionist e ospite al banco check-in di un hotel"
+                  fill
+                  sizes="(max-width: 980px) 100vw, 560px"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div className="gbody">
                 <span className="badge amber">

@@ -27,7 +27,7 @@ const AUTHOR_LD = {
   name: "Redazione Hub Hotel Manager",
   url: `${SITE.url}/chi-siamo`,
   description:
-    "La redazione di Hub Hotel Manager: contenuti curati con Green Consulting e Staymore, realtà che lavorano ogni giorno con gli hotel indipendenti italiani.",
+    "La redazione di Hub Hotel Manager: contenuti curati con Green Consulting e Tourism Innovation Lab, realtà che lavorano ogni giorno con gli hotel indipendenti italiani.",
   sameAs: SITE.partners.map((p) => p.url),
   parentOrganization: { "@id": `${SITE.url}/#organization` },
 };
@@ -163,7 +163,7 @@ export function ArticleView({
             <strong>Redazione Hub Hotel Manager</strong>
             <p>
               Contenuti curati con <a href={SITE.partners[0].url} target="_blank" rel="noopener">Green Consulting</a> e{" "}
-              <a href={SITE.partners[1].url} target="_blank" rel="noopener">Staymore</a>, realtà che lavorano ogni
+              <a href={SITE.partners[1].url} target="_blank" rel="noopener">Tourism Innovation Lab</a>, realtà che lavorano ogni
               giorno con gli hotel indipendenti italiani. <Link href="/chi-siamo">Scopri chi siamo</Link>.
             </p>
           </div>

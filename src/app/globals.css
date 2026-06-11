@@ -406,7 +406,10 @@ footer{background:#0e0e0e;color:#fff;padding:78px 0 36px;}
 .foot-col .foot-soon{margin-top:12px;font-size:13px;line-height:1.6;color:rgba(255,255,255,.45);max-width:30ch;}
 .foot-partners{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:34px 0;border-bottom:1px solid rgba(255,255,255,.09);}
 .foot-partners .pp{font-size:14px;color:rgba(255,255,255,.5);font-weight:600;}
-.pplogo{height:52px;width:150px;border-radius:12px;background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-weight:700;font-size:14px;}
+/* Loghi partner: PNG colorati resi bianchi monocromatici via filter. */
+.pplogo{display:inline-flex;align-items:center;}
+.pplogo img{height:26px;width:auto;filter:brightness(0) invert(1);opacity:.85;transition:opacity .2s ease;}
+.pplogo:hover img{opacity:1;}
 .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;}
 .foot-bottom .cr{font-size:13.5px;color:rgba(255,255,255,.62);}
 .foot-bottom .legal{display:flex;gap:22px;}

@@ -22,7 +22,7 @@ export default function Privacy() {
       <h2>1. Titolare del trattamento e contatti</h2>
       <p>
         Il titolare del trattamento dei dati personali raccolti tramite questo sito è{" "}
-        <strong>STAYMORE <PH>[ragione sociale completa — segnaposto]</PH></strong>, con sede legale in{" "}
+        <strong>TOURISM INNOVATION LAB <PH>[ragione sociale completa — segnaposto]</PH></strong>, con sede legale in{" "}
         <PH>[indirizzo, CAP, città, provincia — segnaposto]</PH>, <strong>P.IVA <PH>[numero — segnaposto]</PH></strong>.
       </p>
       <p>

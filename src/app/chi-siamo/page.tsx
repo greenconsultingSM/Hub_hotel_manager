@@ -8,12 +8,12 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Chi siamo",
-  description: "Uno spazio creato da Green Consulting e Staymore per aiutare gli albergatori indipendenti a crescere.",
+  description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare gli albergatori indipendenti a crescere.",
   alternates: { canonical: "/chi-siamo" },
   openGraph: {
     type: "website",
     title: "Chi siamo — Hub Hotel Manager",
-    description: "Uno spazio creato da Green Consulting e Staymore per aiutare gli albergatori indipendenti a crescere.",
+    description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare gli albergatori indipendenti a crescere.",
   },
 };
 
@@ -93,7 +93,7 @@ export default function ChiSiamo() {
               <p className="lede">
                 Hub Hotel Manager raccoglie in un unico posto guide pratiche, strumenti e analisi affidabili. Sono
                 pensati per aiutare l&apos;albergatore indipendente italiano a crescere. È un progetto di Green
-                Consulting e Staymore.
+                Consulting e Tourism Innovation Lab.
               </p>
             </div>
           </div>
@@ -216,15 +216,16 @@ export default function ChiSiamo() {
 
             <div className="partner-block">
               <div className="pl">
-                <span className="pn">Staymore</span>
-                <span className="pk">tecnologia &amp; distribuzione</span>
+                <span className="pn">Tourism Innovation Lab</span>
+                <span className="pk">tecnologia &amp; innovazione</span>
               </div>
               <div className="partner-text">
-                <h3>Staymore</h3>
+                <h3>Tourism Innovation Lab</h3>
                 <p>
-                  Staymore è una realtà che affianca gli albergatori sul fronte di tecnologia e distribuzione.{" "}
-                  <a href="https://staymore.it" target="_blank" rel="noopener noreferrer">
-                    staymore.it
+                  Tourism Innovation Lab è un laboratorio di innovazione turistica: sviluppa software per la filiera
+                  e affianca gli albergatori su tecnologia, upselling e vendita di servizi.{" "}
+                  <a href="https://www.tourisminnovationlab.it/" target="_blank" rel="noopener noreferrer">
+                    tourisminnovationlab.it
                   </a>
                 </p>
               </div>

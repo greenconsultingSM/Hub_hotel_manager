@@ -112,7 +112,7 @@ export function MagazineArticleView({
                   <p>
                     Contenuti curati con{" "}
                     <a href={SITE.partners[0].url} target="_blank" rel="noopener">Green Consulting</a> e{" "}
-                    <a href={SITE.partners[1].url} target="_blank" rel="noopener">Staymore</a>, realtà che lavorano
+                    <a href={SITE.partners[1].url} target="_blank" rel="noopener">Tourism Innovation Lab</a>, realtà che lavorano
                     ogni giorno con gli hotel indipendenti italiani. <Link href="/chi-siamo">Scopri chi siamo</Link>.
                   </p>
                 </div>

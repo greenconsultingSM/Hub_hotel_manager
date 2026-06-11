@@ -38,7 +38,7 @@ export function GET() {
 
   const body = `# ${SITE.name}
 
-> Hub di contenuti indipendente per gli albergatori italiani: guide pratiche, strumenti e analisi su come ridurre le commissioni delle OTA (Booking, Expedia) e far crescere le prenotazioni dirette. Un progetto di Green Consulting e Staymore.
+> Hub di contenuti indipendente per gli albergatori italiani: guide pratiche, strumenti e analisi su come ridurre le commissioni delle OTA (Booking, Expedia) e far crescere le prenotazioni dirette. Un progetto di Green Consulting e Tourism Innovation Lab.
 
 ## Guide — Disintermediazione e commissioni OTA
 ${guideLines}
@@ -57,7 +57,7 @@ ${magazineLines}
 - [Guida gratuita alla disintermediazione](${base}/risorse/guida-disintermediazione): ebook pratico sulla disintermediazione, in arrivo (iscrizione via email).
 
 ## Chi siamo
-- [Chi siamo](${base}/chi-siamo): la missione dell'hub e chi c'è dietro (Green Consulting e Staymore).
+- [Chi siamo](${base}/chi-siamo): la missione dell'hub e chi c'è dietro (Green Consulting e Tourism Innovation Lab).
 `;
 
   return new Response(body, {

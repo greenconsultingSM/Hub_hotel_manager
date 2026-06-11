@@ -23,7 +23,7 @@ export type Categoria = {
 // confermare: finché è vuoto, ArticleCta ripiega sulla newsletter.
 export const LEAD: Record<LeadKey, { label: string; url: string }> = {
   gc: { label: "Green Consulting", url: "https://greenconsulting.it" },
-  staymore: { label: "Staymore", url: "https://staymore.it" },
+  staymore: { label: "Tourism Innovation Lab", url: "https://www.tourisminnovationlab.it/" },
   partner: { label: "Partner", url: "" },
 };
 
