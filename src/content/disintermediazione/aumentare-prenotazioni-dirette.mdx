@@ -10,6 +10,7 @@ destinazione: gc
 descrizione: "La guida pratica e prioritizzata per costruire il canale diretto del tuo hotel, ridurre la dipendenza dalle OTA e recuperare margine su ogni prenotazione."
 updated: 2026-06-08
 autore: "Redazione Hub Hotel Manager"
+cover: "/covers/aumentare-prenotazioni-dirette.jpg"
 stato: bozza
 ---
 
@@ -25,7 +26,14 @@ Una prenotazione diretta è quella che l'ospite effettua **senza intermediari**:
 
 La differenza non è solo "risparmiare la commissione". Il punto è il **valore complessivo** della prenotazione.
 
-> [diagramma: ricavo medio per prenotazione — canale diretto US$516 vs OTA US$312]
+<DiagramBars
+  title="Quanto vale una prenotazione, canale per canale"
+  bars={[
+    { label: "Prenotazione dal sito dell'hotel", display: "US$516", value: 516, accent: true, delta: "+60% di valore" },
+    { label: "Prenotazione via OTA", display: "US$312", value: 312 },
+  ]}
+  caption="Valore medio per prenotazione: il diretto rende di più tra soggiorni più lunghi, extra e zero commissioni. Fonte: SiteMinder, Hotel Booking Trends 2025."
+/>
 
 Secondo SiteMinder *(Hotel Booking Trends 2025)*, il ricavo medio per prenotazione generato dal **sito diretto** è di circa **US$516**, contro i **US$312** di una prenotazione via OTA. Quasi il **60% in più** a parità di prenotazione: l'ospite diretto tende a prenotare soggiorni più lunghi, ad aggiungere extra e a non ridurre il valore con la commissione del portale. A questo si aggiunge che il canale diretto è in crescita — **+4,3%** nel 2025 *(SiteMinder)* — e che le proiezioni di settore vedono il diretto **superare le OTA** entro il 2030, con **US$400 miliardi** contro **US$333 miliardi** *(Skift Research)*. Il diretto, in altre parole, non è una nicchia in ritirata: è la direzione del mercato.
 
@@ -95,6 +103,5 @@ Dando all'ospite un motivo concreto per prenotare dal tuo sito invece che dal po
 - Stato: BOZZA (Fase 4). Da passare a /it (Fase 5) + fact-check fonti (Fase 6) + OK umano (Fase 7).
 - Dati da ri-verificare alla pubblicazione: US$516/US$312 e +4,3% (SiteMinder, Hotel Booking Trends 2025); proiezione 2030 $400 mld vs $333 mld (Skift Research). Vedi bibliografia.
 - TODO slug definitivi: sostituire i link interni provvisori (/commissioni-ota, /commissioni-ota/come-pagare-meno-commissioni) con gli slug finali.
-- TODO diagramma: inserire diagramma reale "ricavo diretto US$516 vs OTA US$312" al posto del segnalibro.
 - TODO componenti: <CtaInline> / <LeadForm waitlist> al posto dei marcatori CTA; valutare handoff Green Consulting (booking engine / marketing diretto) in chiusura.
 -->

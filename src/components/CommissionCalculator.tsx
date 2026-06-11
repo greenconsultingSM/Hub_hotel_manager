@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { SITE } from "@/lib/site";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 // Calcolatore commissioni OTA — tool libero, 100% lato client (nessun backend).
 // Modello validato: vedi CONTESTO/Sito_web/metodo-calcolatore-ota.md.
 // Scelte: risparmio NETTO (sottrae il CAC del diretto); toggle IVA host senza
 // P.IVA; value uplift 516/312 solo come nota (non nel calcolo).
 
-const GC = SITE.partners.find((p) => p.name === "Green Consulting")?.url ?? "https://greenconsulting.it";
 const AIRBNB_FEE = 0.155; // host-only fee Italia/EU (Airbnb ufficiale, art. 1857)
 
 const eur = (n: number, dp = 0) =>
@@ -37,6 +35,33 @@ type State = {
 
 const DEFAULTS: State = { camere: 20, occ: 70, adr: 155, qOTA: 61, cOTA: 18, hostNoVat: false, shift: 20, cac: 11, be: 100 };
 
+// Anima il numero verso il target (easing cubic-out). Primo render statico;
+// rispetta prefers-reduced-motion.
+function useCountUp(target: number, ms = 600): number {
+  const [shown, setShown] = useState(target);
+  const prev = useRef(target);
+  useEffect(() => {
+    const from = prev.current;
+    prev.current = target;
+    if (from === target) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(target);
+      return;
+    }
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / ms);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setShown(from + (target - from) * eased);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, ms]);
+  return shown;
+}
+
 function Num({
   label,
   hint,
@@ -56,21 +81,30 @@ function Num({
   max?: number;
   step?: number;
 }) {
+  const id = useId();
+  // L'attributo HTML max vincola solo le freccette, non la digitazione:
+  // il clamp va fatto qui, sennò "occupazione 150%" produce numeri assurdi.
+  const clamp = (n: number) => {
+    if (!Number.isFinite(n)) return min;
+    const lo = Math.max(min, n);
+    return max !== undefined ? Math.min(max, lo) : lo;
+  };
   return (
     <div className="field">
-      <label>
+      <label htmlFor={id}>
         <span>{label}</span>
         {hint && <span className="hint">{hint}</span>}
       </label>
       <div className="num">
         <input
+          id={id}
           type="number"
           inputMode="decimal"
-          value={Number.isFinite(value) ? value : 0}
+          value={Number.isFinite(value) ? value : min}
           min={min}
           max={max}
           step={step}
-          onChange={(e) => onChange(e.target.value === "" ? 0 : Math.max(min, Number(e.target.value)))}
+          onChange={(e) => onChange(clamp(e.target.value === "" ? min : Number(e.target.value)))}
         />
         {suffix && <span className="num-suffix">{suffix}</span>}
       </div>
@@ -95,7 +129,9 @@ export function CommissionCalculator() {
 
   const costoBE = s.be * 12;
   const beneficio = risparmio - costoBE;
-  const payback = risparmio > 0 ? costoBE / (risparmio / 12) : null;
+  // Il BE "si ripaga" solo se il risparmio annuo supera il canone annuo
+  // (costo ricorrente: sotto quella soglia non si ripaga MAI, non "in più mesi").
+  const payback = risparmio > costoBE ? costoBE / (risparmio / 12) : null;
 
   const otaNet = 100 * (1 - (s.cOTA / 100) * iva);
   const dirNet = 100 * (1 - s.cac / 100);
@@ -105,6 +141,8 @@ export function CommissionCalculator() {
     { k: "Airbnb", v: airbnbNet, accent: false },
     { k: "OTA (Booking)", v: otaNet, accent: false },
   ].sort((a, b) => b.v - a.v);
+
+  const bigShown = useCountUp(costoOTA);
 
   return (
     <>
@@ -120,6 +158,7 @@ export function CommissionCalculator() {
 
           <label className="calc-toggle">
             <input type="checkbox" checked={s.hostNoVat} onChange={(e) => set("hostNoVat")(e.target.checked)} />
+            <span className="switch" aria-hidden="true" />
             <span>
               Sono un host <strong>senza Partita IVA</strong>
               <em>stima: aggiunge l&apos;IVA 22% sulla commissione (non recuperabile) — verifica col tuo commercialista</em>
@@ -144,7 +183,7 @@ export function CommissionCalculator() {
 
         <div className="calc-result">
           <div className="r-label">Quanto ti costano le OTA</div>
-          <div className="r-big">{eur(costoOTA)}</div>
+          <div className="r-big">{eur(bigShown)}</div>
           <div className="r-cap">
             all&apos;anno in commissioni (~{eur(costoOTA / 12)}/mese){s.hostNoVat ? ", IVA 22% inclusa" : ""}.
           </div>
@@ -155,32 +194,46 @@ export function CommissionCalculator() {
               <div className="k">Risparmio netto/anno spostando il {s.shift}% sul diretto</div>
             </div>
             <div className="r-stat">
-              <div className="v">{payback === null ? "—" : `${dec1(payback)} mesi`}</div>
-              <div className="k">Payback del booking engine ({eur(s.be)}/mese)</div>
+              <div className="v">{eur(beneficio)}</div>
+              <div className="k">Beneficio netto anno 1, tolto il booking engine ({eur(costoBE)}/anno)</div>
+            </div>
+            <div className="r-stat">
+              <div className="v">{payback === null ? "Non si ripaga" : `${dec1(payback)} mesi`}</div>
+              <div className="k">
+                Payback del booking engine ({eur(s.be)}/mese)
+                {payback === null ? " — con questi numeri il canone supera il risparmio" : ""}
+              </div>
             </div>
           </div>
 
           <div className="r-note">
             Risparmio <strong>netto</strong> = commissione evitata {eur(commRisp)} − costo del diretto {eur(costoDir)}.
-            {beneficio > 0 ? ` Beneficio netto dopo il booking engine: ${eur(beneficio)}/anno.` : ""}
           </div>
         </div>
       </div>
 
       <div className="calc-channels reveal" data-d="2">
-        <div className="chx-title">Quanto ti resta su 100 € di prenotazione, per canale</div>
+        <h2 className="chx-title">Quanto ti resta su 100 € di prenotazione, per canale</h2>
+        <div className="chx-legend" aria-hidden="true">
+          <span className="lg lg-keep" /> ti resta
+          <span className="lg lg-cost" /> costo del canale
+        </div>
         <div className="chx-list">
-          {channels.map((c) => (
-            <div className={`chx${c.accent ? " is-best" : ""}`} key={c.k}>
-              <div className="chx-top">
-                <span className="chx-k">{c.k}</span>
-                <span className="chx-v">{eur(c.v, 1)}</span>
+          {channels.map((c) => {
+            const keep = Math.max(0, Math.min(100, c.v));
+            return (
+              <div className={`chx${c.accent ? " is-best" : ""}`} key={c.k}>
+                <div className="chx-top">
+                  <span className="chx-k">{c.k}</span>
+                  <span className="chx-v">{eur(c.v, 1)}</span>
+                </div>
+                <div className="chx-bar">
+                  <span className="seg-keep" style={{ width: `${keep}%` }} />
+                  <span className="seg-cost" style={{ width: `${100 - keep}%` }} />
+                </div>
               </div>
-              <div className="chx-bar">
-                <span style={{ width: `${Math.max(0, Math.min(100, c.v))}%` }} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <p className="chx-note">
           Confronto a parità di prezzo esposto. Le prenotazioni dirette tendono inoltre a valere di più (in media{" "}
@@ -190,5 +243,3 @@ export function CommissionCalculator() {
     </>
   );
 }
-
-export { GC };

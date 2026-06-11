@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CommissionCalculator } from "@/components/CommissionCalculator";
+import { JsonLd } from "@/components/JsonLd";
+import { SubscribeSection } from "@/components/SubscribeSection";
 import { SITE } from "@/lib/site";
 
 const GC = SITE.partners.find((p) => p.name === "Green Consulting")?.url ?? "https://greenconsulting.it";
@@ -21,9 +23,27 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// WebApplication: dice a Google e ai crawler AI che questa pagina è uno
+// strumento interattivo gratuito, non solo contenuto testuale.
+const appLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Calcolatore commissioni OTA",
+  url: `${SITE.url}/strumenti/calcolatore-commissioni-ota`,
+  description:
+    "Strumento gratuito per stimare quanto si paga di commissioni alle OTA ogni anno e quanto si risparmierebbe, al netto dei costi del diretto, spostando prenotazioni sul canale diretto.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  inLanguage: "it-IT",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  publisher: { "@id": `${SITE.url}/#organization` },
+};
+
 export default function CalcolatoreCommissioniOta() {
   return (
     <>
+      <JsonLd data={appLd} />
       <div className="wrap">
         <Breadcrumb
           items={[{ name: "Home", href: "/" }, { name: "Strumenti" }, { name: "Calcolatore commissioni OTA" }]}
@@ -60,7 +80,9 @@ export default function CalcolatoreCommissioniOta() {
         </div>
       </section>
 
-      <section className="band dark">
+      {/* Banda chiara ambrata: stacca la consulenza (GC) dalla newsletter scura
+          che segue — niente muro scuro di due bande consecutive. */}
+      <section className="band calc-gc">
         <div className="wrap calc-cta">
           <h2>Vuoi recuperare davvero questo margine?</h2>
           <p className="lead">
@@ -72,6 +94,10 @@ export default function CalcolatoreCommissioniOta() {
           </a>
         </div>
       </section>
+
+      {/* Cattura email post-risultato (funnel BOFU): chi ha appena visto quanto
+          paga alle OTA è il lead più caldo del sito. Unica cattura in pagina. */}
+      <SubscribeSection source="calcolatore" />
     </>
   );
 }

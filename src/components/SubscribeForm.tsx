@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { Icon } from "./Icon";
 
 type Variant = "hero" | "final" | "footer" | "lead" | "gate";
 
-// Form di iscrizione/waitlist. STUB: il backend (Supabase + ActiveCampaign
-// Staymore) è ancora da collegare. La sottomissione mostra solo una conferma in
-// pagina. La fonte (`source`) serve a segmentare la lista una volta collegato.
+// Form di cattura lead → POST /api/lead (Supabase + sync ActiveCampaign).
+// Decisioni gate 2026-06-10/11: nome OBBLIGATORIO su tutti i form; honeypot
+// anti-bot; dopo il submit redirect alla pagina /grazie?da=<source> (lì parte
+// l'evento GA4 generate_lead). La fonte (`source`) segmenta liste e tag.
 export function SubscribeForm({
   variant,
   source = "aggiornamenti",
@@ -19,85 +21,130 @@ export function SubscribeForm({
   variant: Variant;
   source?: string;
   cta?: string;
-  confirm?: string;
+  confirm?: string; // mantenuto per compatibilità: oggi si reindirizza a /grazie
   placeholder?: string;
   fine?: ReactNode;
 }) {
-  const [done, setDone] = useState(false);
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  void confirm;
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO(backend): inviare l'email a Supabase/ActiveCampaign con fonte=source.
-    setDone(true);
+    if (busy) return;
+    setError(null);
+    const fd = new FormData(e.currentTarget);
+    setBusy(true);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: fd.get("email"),
+          nome: fd.get("nome"),
+          azienda: fd.get("azienda"), // honeypot
+          source,
+        }),
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      if (res.ok && data.ok) {
+        router.push(`/grazie?da=${encodeURIComponent(source)}`);
+        return;
+      }
+      setError(typeof data.error === "string" ? data.error : "Qualcosa è andato storto, riprova.");
+    } catch {
+      setError("Connessione non riuscita, riprova.");
+    } finally {
+      setBusy(false);
+    }
   }
 
-  // --- Footer: input compatto con freccia ---
+  const dark = variant === "final" || variant === "footer" || variant === "lead";
+  const nameField = (
+    <input
+      className="sf-name"
+      type="text"
+      name="nome"
+      required
+      placeholder="Il tuo nome"
+      aria-label="Nome"
+      autoComplete="name"
+    />
+  );
+  const honeypot = (
+    <input className="hp" type="text" name="azienda" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+  );
+  const errorMsg = error && <p className="sf-error" role="alert">{error}</p>;
+
+  // --- Footer: compatto, nome + riga email/freccia ---
   if (variant === "footer") {
-    if (done) return <p style={{ marginTop: 24, color: "rgba(255,255,255,.6)", fontSize: 14 }}>Grazie! Ti scriviamo appena esce qualcosa di utile.</p>;
     return (
-      <form className="foot-news" onSubmit={handleSubmit} data-fonte={source}>
-        <input type="email" required placeholder="Iscriviti per gli aggiornamenti" aria-label="Email" />
-        <button type="submit" aria-label="Iscriviti">
-          <Icon name="arrow" />
-        </button>
+      <form className={`sf-stack on-dark`} onSubmit={handleSubmit} data-fonte={source}>
+        {honeypot}
+        {nameField}
+        <div className="foot-news">
+          <input type="email" name="email" required placeholder="Iscriviti per gli aggiornamenti" aria-label="Email" autoComplete="email" />
+          <button type="submit" aria-label="Iscriviti" disabled={busy}>
+            <Icon name="arrow" />
+          </button>
+        </div>
+        {errorMsg}
       </form>
     );
   }
 
-  // --- Lead band (ebook): banda scura con riga input + bottone ---
+  // --- Lead band (ebook/waitlist): nome + riga input/bottone ---
   if (variant === "lead") {
-    if (done) return <p className="lf-done">{confirm ?? "Perfetto. Ti scriviamo appena è pronta."}</p>;
     return (
-      <form className="lead-form" onSubmit={handleSubmit} data-fonte={source}>
+      <form className="sf-stack on-dark lead-form" onSubmit={handleSubmit} data-fonte={source}>
+        {honeypot}
+        {nameField}
         <div className="lf-row">
-          <input type="email" required placeholder={placeholder ?? "La tua email professionale"} aria-label="Email" />
-          <button className="btn btn-primary" type="submit">
-            {cta ?? "Avvisami"} <Icon name="arrow" />
+          <input type="email" name="email" required placeholder={placeholder ?? "La tua email professionale"} aria-label="Email" autoComplete="email" />
+          <button className="btn btn-primary" type="submit" disabled={busy}>
+            {busy ? "Un attimo…" : (cta ?? "Avvisami")} <Icon name="arrow" />
           </button>
         </div>
+        {errorMsg}
         {fine && <p className="lf-fine">{fine}</p>}
       </form>
     );
   }
 
-  // --- Gate (calcolatore in arrivo): input pill + bottone ---
+  // --- Gate: nome + pill email/bottone ---
   if (variant === "gate") {
-    if (done) {
-      return (
-        <>
-          <p className="g-done">{confirm ?? "Perfetto. Ti scriviamo appena è online."}</p>
-          {fine && <p className="g-fine">{fine}</p>}
-        </>
-      );
-    }
     return (
       <>
-        <form className="gate-form" onSubmit={handleSubmit} data-fonte={source}>
-          <input type="email" required placeholder={placeholder ?? "La tua email"} aria-label="Email" />
-          <button className="btn btn-primary" type="submit">
-            {cta ?? "Avvisami"} <Icon name="arrow" />
-          </button>
+        <form className="sf-stack" onSubmit={handleSubmit} data-fonte={source}>
+          {honeypot}
+          {nameField}
+          <div className="gate-form">
+            <input type="email" name="email" required placeholder={placeholder ?? "La tua email"} aria-label="Email" autoComplete="email" />
+            <button className="btn btn-primary" type="submit" disabled={busy}>
+              {busy ? "Un attimo…" : (cta ?? "Avvisami")} <Icon name="arrow" />
+            </button>
+          </div>
+          {errorMsg}
         </form>
         {fine && <p className="g-fine">{fine}</p>}
       </>
     );
   }
 
-  // --- Hero / Final: input largo + bottone primario ---
-  const className = variant === "hero" ? "hero-form" : "subscribe";
-  const label = cta ?? "Iscriviti";
-
-  if (done) {
-    const color = variant === "final" ? "rgba(255,255,255,.8)" : "var(--ink-soft)";
-    return <p style={{ marginTop: 18, color, fontSize: 15 }}>{confirm ?? "Ci sei. Ti scriviamo appena esce qualcosa di utile."}</p>;
-  }
-
+  // --- Hero / Final: nome + pill email/bottone ---
+  const rowClass = variant === "hero" ? "hero-form" : "subscribe";
   return (
-    <form className={className} onSubmit={handleSubmit} data-fonte={source}>
-      <input type="email" required placeholder={placeholder ?? "La tua email"} aria-label="Email" />
-      <button className="btn btn-primary" type="submit">
-        {label} <Icon name="arrow" />
-      </button>
+    <form className={`sf-stack${dark ? " on-dark" : ""}`} onSubmit={handleSubmit} data-fonte={source}>
+      {honeypot}
+      {nameField}
+      <div className={rowClass}>
+        <input type="email" name="email" required placeholder={placeholder ?? "La tua email"} aria-label="Email" autoComplete="email" />
+        <button className="btn btn-primary" type="submit" disabled={busy}>
+          {busy ? "Un attimo…" : (cta ?? "Iscriviti")} <Icon name="arrow" />
+        </button>
+      </div>
+      {errorMsg}
     </form>
   );
 }

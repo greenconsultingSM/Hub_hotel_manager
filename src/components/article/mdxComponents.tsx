@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { slugify } from "@/lib/slug";
 import { CtaWaitlist } from "./CtaWaitlist";
+import { DiagramBars } from "./DiagramBars";
 import { Figure } from "./Figure";
 
 function textOf(node: ReactNode): string {
@@ -41,5 +42,6 @@ export const mdxComponents = {
     );
   },
   CtaWaitlist,
+  DiagramBars,
   Figure,
 };

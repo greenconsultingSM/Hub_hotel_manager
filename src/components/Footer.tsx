@@ -21,22 +21,24 @@ export function Footer() {
             <SubscribeForm variant="footer" />
           </div>
 
-          {FOOTER_COLS.map((col) => (
-            <div className="foot-col" key={col.title}>
-              <h5>{col.title}</h5>
-              {col.items.map((it) =>
-                it.soon || !it.href ? (
-                  <span key={it.label} className="is-soon" style={{ display: "block", padding: "7px 0", color: "rgba(255,255,255,.4)" }}>
-                    {it.label} <span className="soon-badge" style={{ background: "rgba(255,255,255,.08)" }}>presto</span>
-                  </span>
-                ) : (
-                  <Link key={it.label} href={it.href}>
+          {FOOTER_COLS.map((col) => {
+            const active = col.items.filter((it) => !it.soon && it.href);
+            const soon = col.items.filter((it) => it.soon || !it.href);
+            return (
+              <div className="foot-col" key={col.title}>
+                <h5>{col.title}</h5>
+                {active.map((it) => (
+                  <Link key={it.label} href={it.href!}>
                     {it.label}
                   </Link>
-                ),
-              )}
-            </div>
-          ))}
+                ))}
+                {/* le voci future in una riga sola: il footer mostra solo ciò che esiste */}
+                {soon.length > 0 && (
+                  <p className="foot-soon">In arrivo: {soon.map((it) => it.label).join(" · ")}</p>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div className="foot-partners">

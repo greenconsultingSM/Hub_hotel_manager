@@ -17,6 +17,9 @@ export function generateMetadata(): Metadata {
       type: "article",
       title: pillar.frontmatter.title,
       description: pillar.frontmatter.descrizione,
+      url: `/${CLUSTER.slug}`,
+      ...(pillar.frontmatter.updated ? { modifiedTime: pillar.frontmatter.updated } : {}),
+      ...(pillar.frontmatter.cover ? { images: [{ url: pillar.frontmatter.cover, width: 1600, height: 900 }] } : {}),
     },
   };
 }
@@ -27,7 +30,10 @@ export default async function PillarPage() {
   const { content } = await compileMDX({
     source: pillar.body,
     components: mdxComponents,
-    options: { parseFrontmatter: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
+    // blockJS: false — l'MDX è contenuto locale di prima parte; serve per le
+    // props-espressione dei componenti (es. <DiagramBars bars={[...]}/>).
+    // blockDangerousJS resta attivo di default.
+    options: { parseFrontmatter: false, blockJS: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
   });
   return <ArticleView article={pillar} related={getSpokes()} mdxContent={content} />;
 }

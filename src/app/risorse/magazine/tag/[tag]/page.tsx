@@ -15,6 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
     description: `Articoli del Magazine sul tema ${tag}.`,
     alternates: { canonical: `${MAGAZINE_BASE}/tag/${tag}` },
     robots: { index: false, follow: true },
+    openGraph: {
+      type: "website",
+      title: `${tag} — Magazine — Hub Hotel Manager`,
+      description: `Articoli del Magazine sul tema ${tag}.`,
+    },
   };
 }
 

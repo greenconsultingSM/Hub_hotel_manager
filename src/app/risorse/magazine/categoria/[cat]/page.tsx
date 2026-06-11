@@ -14,10 +14,19 @@ export async function generateMetadata({ params }: { params: Promise<{ cat: stri
   const { cat } = await params;
   const c = getCategoria(cat);
   if (!c) return {};
+  // Thin content: la categoria entra nell'indice solo quando ha almeno
+  // 2 articoli pubblicati; prima resta noindex,follow (navigabile, crawlabile).
+  const count = getPostsByCategory(cat).filter((p) => p.frontmatter.index !== false).length;
   return {
     title: `${c.label} — Magazine`,
     description: c.descrizione,
     alternates: { canonical: `${MAGAZINE_BASE}/categoria/${cat}` },
+    ...(count < 2 ? { robots: { index: false, follow: true } } : {}),
+    openGraph: {
+      type: "website",
+      title: `${c.label} — Magazine — Hub Hotel Manager`,
+      description: c.descrizione,
+    },
   };
 }
 

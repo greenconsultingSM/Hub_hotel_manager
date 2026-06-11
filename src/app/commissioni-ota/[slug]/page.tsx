@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       title: article.frontmatter.title,
       description: article.frontmatter.descrizione,
+      url: `/${CLUSTER.slug}/${slug}`,
+      ...(article.frontmatter.updated ? { modifiedTime: article.frontmatter.updated } : {}),
+      ...(article.frontmatter.cover ? { images: [{ url: article.frontmatter.cover, width: 1600, height: 900 }] } : {}),
     },
   };
 }
@@ -40,7 +43,9 @@ export default async function SpokePage({ params }: { params: Promise<{ slug: st
   const { content } = await compileMDX({
     source: article.body,
     components: mdxComponents,
-    options: { parseFrontmatter: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
+    // blockJS: false — MDX locale di prima parte (vedi pillar): consente le
+    // props-espressione tipo <DiagramBars bars={[...]}/>.
+    options: { parseFrontmatter: false, blockJS: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
   });
 
   const pillar = getPillar();

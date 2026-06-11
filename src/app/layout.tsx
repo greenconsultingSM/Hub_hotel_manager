@@ -31,15 +31,24 @@ export const metadata: Metadata = {
     title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
     description: SITE.description,
   },
+  // L'immagine la fornisce opengraph-image.tsx (file convention); la card
+  // grande fa sì che X/Twitter la usi come og:image fallback.
+  twitter: {
+    card: "summary_large_image",
+    title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
+    description: SITE.description,
+  },
   robots: { index: true, follow: true },
 };
 
 const orgLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE.url}/#organization`,
   name: SITE.name,
   url: SITE.url,
   description: SITE.description,
+  logo: `${SITE.url}/opengraph-image`,
   sameAs: SITE.partners.map((p) => p.url),
 };
 

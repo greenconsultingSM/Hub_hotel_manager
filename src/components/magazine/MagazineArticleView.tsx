@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SITE } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { Icon } from "@/components/Icon";
 import { getCategoria } from "@/lib/taxonomy";
@@ -69,7 +72,16 @@ export function MagazineArticleView({
           </header>
 
           {fm.cover && (
-            <div className="mag-hero-cover" style={{ backgroundImage: `url(${fm.cover})` }} role="img" aria-label={fm.title} />
+            <div className="mag-hero-cover">
+              <Image
+                src={fm.cover}
+                alt={fm.title}
+                fill
+                priority
+                sizes="(max-width: 1100px) 100vw, 1060px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
           )}
 
           {isNews && (
@@ -89,6 +101,22 @@ export function MagazineArticleView({
             <div className="mag-main">
               <div className="prose">{mdxContent}</div>
               <DallaGuidaBox post={post} />
+
+              {/* Chi scrive (E-E-A-T): stessa entità dell'author nello schema. */}
+              <aside className="author-box" aria-label="Chi scrive">
+                <span className="author-ico">
+                  <Icon name="users" />
+                </span>
+                <div>
+                  <strong>{fm.autore ?? "Redazione Hub Hotel Manager"}</strong>
+                  <p>
+                    Contenuti curati con{" "}
+                    <a href={SITE.partners[0].url} target="_blank" rel="noopener">Green Consulting</a> e{" "}
+                    <a href={SITE.partners[1].url} target="_blank" rel="noopener">Staymore</a>, realtà che lavorano
+                    ogni giorno con gli hotel indipendenti italiani. <Link href="/chi-siamo">Scopri chi siamo</Link>.
+                  </p>
+                </div>
+              </aside>
             </div>
 
             {post.toc.length > 0 && (

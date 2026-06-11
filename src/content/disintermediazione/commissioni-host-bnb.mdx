@@ -10,6 +10,7 @@ destinazione: gc
 descrizione: "Percentuali, IVA e supplementi delle commissioni Booking per host, B&B e case vacanza: quanto paghi davvero in base al tipo di struttura."
 updated: 2026-06-08
 autore: "Redazione Hub Hotel Manager"
+cover: "/covers/commissioni-host-bnb.jpg"
 stato: bozza
 ---
 
@@ -62,9 +63,16 @@ C'è un dato da tenere a mente: la percentuale "ufficiale" e la trattenuta reale
 
 ## Booking o Airbnb: quanto costano davvero per un host
 
-> [diagramma: confronto Booking vs Airbnb per host]
+<DiagramBars
+  title="Host privato: commissione ufficiale vs trattenuta reale"
+  bars={[
+    { label: "Commissione base (17%)", display: "68 €", value: 68 },
+    { label: "Trattenuta effettiva con IVA e incasso gestito (~24%)", display: "~95 €", value: 95, accent: true, delta: "+7 punti" },
+  ]}
+  caption="Su una prenotazione campione di 400 €: la commissione 'ufficiale' contro quanto trattiene davvero Booking a un host privato senza Partita IVA (IVA 22% non recuperabile + supplemento incasso). Valori indicativi — dettaglio in Tabella 1."
+/>
 
-La domanda è ricorrente e la risposta non è un numero unico: dipende dal **modello di addebito**. Booking applica all'host un'unica commissione sul valore della prenotazione, in media tra il **15% e il 18%** *(Booking.com for Partners)*, a cui — come abbiamo visto — vanno aggiunti IVA e supplemento di incasso per chi non ha Partita IVA. Airbnb adotta più spesso una commissione **ripartita** tra host e ospite: l'host paga una quota inferiore in percentuale, ma una parte del costo viene caricata sul prezzo finale visto dall'ospite.
+La domanda è ricorrente e la risposta non è un numero unico: dipende dal **modello di addebito**. Booking applica all'host un'unica commissione sul valore della prenotazione, in media tra il **15% e il 18%** *(Booking.com for Partners)*, a cui — come abbiamo visto — vanno aggiunti IVA e supplemento di incasso per chi non ha Partita IVA. Airbnb prevede invece **due strutture di commissione** *(Airbnb, Costi del servizio)*. Con i **costi condivisi**, l'host paga circa il **3%** — per gli annunci in Italia la percentuale è maggiore — e l'ospite una quota tra il **14,1% e il 16,5%** del subtotale, caricata sul prezzo finale che vede al momento della prenotazione. Con i **costi singoli**, tutto è a carico dell'host: la maggior parte paga il **15,5%**, di solito in un range tra il 14% e il 16%. Attenzione: la struttura a costi singoli è **obbligatoria** per alcuni host, tra cui gli alloggi tradizionali come gli hotel e chi usa un software di gestione immobiliare.
 
 Per questo il confronto va fatto sul **costo totale effettivo** per la tua struttura, non sull'aliquota nominale. Due fattori fanno la differenza: la tua **posizione IVA** (che gonfia il costo Booking se sei host privato) e quanto pesa, sulla tua conversione, il prezzo finale mostrato all'ospite (dove incide di più il modello Airbnb). Su entrambe le piattaforme, in ogni caso, vale la stessa logica del canale diretto: ogni prenotazione spostata sul tuo sito è margine che non cedi a nessun intermediario.
 
@@ -79,7 +87,7 @@ In media tra il 15% e il 18% del valore della prenotazione, con un intervallo da
 No. Booking non applica un canone di iscrizione né un costo fisso mensile: il modello è interamente a commissione, dovuta solo sulle prenotazioni andate a buon fine. I costi variabili che incidono sul totale sono l'eventuale supplemento per i pagamenti gestiti dalla piattaforma (1,1-3,1%) e i punti percentuali aggiuntivi dei programmi di visibilità, se li attivi.
 
 **È più caro Booking o Airbnb per un host?**
-Dipende dal modello di addebito. Booking applica all'host una commissione unica (in media 15-18%), a cui per gli host privati si sommano IVA al 22% e supplemento di incasso. Airbnb usa più spesso una commissione ripartita tra host e ospite, con una quota a carico dell'host più bassa in percentuale. Il confronto va fatto sul costo totale effettivo per la tua struttura, considerando anche la tua posizione IVA.
+Dipende dal modello di addebito. Booking applica all'host una commissione unica (in media 15-18%), a cui per gli host privati si sommano IVA al 22% e supplemento di incasso. Airbnb offre due strutture: costi condivisi, con circa il 3% a carico dell'host (di più per gli annunci in Italia) e il 14,1-16,5% a carico dell'ospite, oppure costi singoli, con la maggior parte degli host al 15,5% — struttura obbligatoria per gli alloggi tradizionali come gli hotel e per chi usa un gestionale. Il confronto va fatto sul costo totale effettivo per la tua struttura, considerando la tua posizione IVA e il prezzo finale visto dall'ospite.
 
 ---
 

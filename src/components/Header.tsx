@@ -99,8 +99,8 @@ export function Header() {
           </div>
 
           <div className="nav-right">
-            <Link className="btn btn-primary" href="#aggiornamenti">
-              Iscriviti <Icon name="arrow" />
+            <Link className="btn btn-primary" href="#aggiornamenti" aria-label="Iscriviti agli aggiornamenti">
+              <span className="btn-label">Iscriviti</span> <Icon name="arrow" />
             </Link>
             <button className="mobile-toggle" aria-label="Apri il menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen((v) => !v)}>
               <Icon name="menu" />
@@ -108,6 +108,9 @@ export function Header() {
           </div>
         </nav>
 
+        {mobileOpen && (
+          <button className="mobile-scrim" aria-label="Chiudi il menu" onClick={() => setMobileOpen(false)} />
+        )}
         {mobileOpen && (
           <div className="mobile-overlay">
             <Link href="/commissioni-ota" onClick={() => setMobileOpen(false)}>Disintermediazione & OTA</Link>

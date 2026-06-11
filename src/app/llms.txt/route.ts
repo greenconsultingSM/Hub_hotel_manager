@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/site";
 import { getPillar, getSpokes, type Article } from "@/lib/articles";
+import { getIndexablePosts, MAGAZINE_BASE } from "@/lib/magazine";
 
 // /llms.txt — indice curato per gli assistenti AI (spec llmstxt.org).
 // Generato da SITE.url + articoli REALMENTE pubblicati: elenca solo pagine
@@ -26,6 +27,15 @@ export function GET() {
     .map((a) => `- [${a.frontmatter.title}](${base}${a.href}): ${a.frontmatter.descrizione ?? ""}`.trimEnd())
     .join("\n");
 
+  // Magazine: solo i pezzi indicizzabili, dal più recente. Si aggiorna da solo.
+  const magazineLines = getIndexablePosts()
+    .map((p) => {
+      const date = (p.frontmatter.datePublished ?? "").slice(0, 10);
+      const desc = p.frontmatter.sintesi ?? p.frontmatter.descrizione ?? "";
+      return `- [${p.frontmatter.title}](${base}${p.href}): ${date ? `(${date}) ` : ""}${desc}`.trimEnd();
+    })
+    .join("\n");
+
   const body = `# ${SITE.name}
 
 > Hub di contenuti indipendente per gli albergatori italiani: guide pratiche, strumenti e analisi su come ridurre le commissioni delle OTA (Booking, Expedia) e far crescere le prenotazioni dirette. Un progetto di Green Consulting e Staymore.
@@ -35,6 +45,10 @@ ${guideLines}
 
 ## Strumenti
 - [Calcolatore commissioni OTA](${base}/strumenti/calcolatore-commissioni-ota): strumento gratuito (nessuna registrazione) per stimare quanto si paga di commissioni alle OTA ogni anno e quanto si risparmierebbe, al netto dei costi del diretto, spostando prenotazioni sul canale diretto; include confronto canali OTA/diretto/Airbnb e payback del booking engine.
+
+## Magazine — Notizie e analisi di settore
+- [Magazine](${base}${MAGAZINE_BASE}): notizie e analisi su distribuzione, OTA, AI e mercato alberghiero, lette per l'albergatore italiano.
+${magazineLines}
 
 ## Glossario
 - [Disintermediazione](${base}/glossario/disintermediazione): ridurre il ruolo degli intermediari (OTA) spostando la prenotazione sul canale diretto.

@@ -22,6 +22,9 @@ export type Frontmatter = {
   destinazione?: string;
   updated?: string;
   autore?: string;
+  // path relativo in /public (es. "/covers/<slug>.jpg"), 1600×900: hero 21:9,
+  // thumb nelle card, og:image e schema. Assente → pagina senza hero.
+  cover?: string;
   // index: false → pagina noindex,follow (es. bozza YMYL in attesa di validazione
   // di un commercialista): esclusa da sitemap e llms.txt, ma raggiungibile e crawlabile.
   index?: boolean;
@@ -87,9 +90,11 @@ function transformBody(raw: string): string {
   body = body.replace(/^#\s+.+$/m, "");
   // riga "*Fase ...*" o nota in apertura tra asterischi su singola riga: lasciata.
   // CTA waitlist: > **[CTA ...]** *"testo"*  ->  <CtaWaitlist text="testo" />
+  // "[CTA finale ...]" diventa la variante compatta (titolo/bottone diversi),
+  // così le due CTA nello stesso articolo non sono fotocopie.
   body = body.replace(
-    /^>\s*\*\*\[CTA[^\]]*\]\*\*\s*\*"([^"]+)"\*\s*$/gim,
-    (_all, txt) => `\n<CtaWaitlist text="${txt.trim()}" />\n`,
+    /^>\s*\*\*\[CTA([^\]]*)\]\*\*\s*\*"([^"]+)"\*\s*$/gim,
+    (_all, label, txt) => `\n<CtaWaitlist${/finale/i.test(label) ? " final" : ""} text="${txt.trim()}" />\n`,
   );
   // diagramma: > [diagramma: testo]  ->  <Figure note="testo" />
   body = body.replace(

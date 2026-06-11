@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { JsonLd } from "@/components/JsonLd";
 import { SubscribeSection } from "@/components/SubscribeSection";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Glossario dell'albergatore",
@@ -18,9 +20,28 @@ export const metadata: Metadata = {
 const DEF =
   "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari — le OTA come Booking.com ed Expedia — spostando la prenotazione sul proprio canale diretto. L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
 
+// DefinedTermSet con le voci del glossario (oggi una): le pagine voce emettono
+// il DefinedTerm completo, qui c'è l'indice semantico della raccolta.
+const glossaryLd = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "Glossario dell'albergatore",
+  url: `${SITE.url}/glossario`,
+  inLanguage: "it-IT",
+  hasDefinedTerm: [
+    {
+      "@type": "DefinedTerm",
+      name: "Disintermediazione",
+      description: DEF,
+      url: `${SITE.url}/glossario/disintermediazione`,
+    },
+  ],
+};
+
 export default function Glossario() {
   return (
     <>
+      <JsonLd data={glossaryLd} />
       <div className="wrap">
         <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Risorse" }, { name: "Glossario" }]} />
       </div>

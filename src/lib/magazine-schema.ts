@@ -19,8 +19,19 @@ export function articleSchema(post: MagazinePost): Record<string, unknown> {
     ...(fm.datePublished ? { datePublished: fm.datePublished } : {}),
     dateModified: fm.dateModified ?? fm.datePublished,
     ...(img ? { image: [img] } : {}),
-    author: { "@type": "Organization", name: fm.autore ?? "Team Hub Hotel Manager", url: SITE.url },
-    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    // Autore "redazione estesa" (E-E-A-T): entità #redazione condivisa con i
+    // cluster. Se il frontmatter indica un autore proprio, niente @id condiviso.
+    author: fm.autore
+      ? { "@type": "Organization", name: fm.autore, url: `${SITE.url}/chi-siamo` }
+      : {
+          "@type": "Organization",
+          "@id": `${SITE.url}/#redazione`,
+          name: "Redazione Hub Hotel Manager",
+          url: `${SITE.url}/chi-siamo`,
+          sameAs: SITE.partners.map((p) => p.url),
+          parentOrganization: { "@id": `${SITE.url}/#organization` },
+        },
+    publisher: { "@type": "Organization", "@id": `${SITE.url}/#organization`, name: SITE.name, url: SITE.url },
     mainEntityOfPage: url,
     articleSection: categoriaLabel(fm.categoria),
     ...(fm.tags && fm.tags.length ? { keywords: fm.tags.join(", ") } : {}),

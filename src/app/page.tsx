@@ -1,48 +1,58 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { Faq, type FaqEntry } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
+import { getArticle, getPillar } from "@/lib/articles";
+import { getAllMagazinePosts, MAGAZINE_BASE } from "@/lib/magazine";
+import { MagazineCard } from "@/components/magazine/MagazineCard";
 
 const PILLAR = "/commissioni-ota";
+const CALCOLATORE = "/strumenti/calcolatore-commissioni-ota";
 
-type HeroCard = { badge: string; color: string; title?: string; meta?: string; href?: string; label?: string; soon?: boolean };
-const heroCards: HeroCard[] = [
-  { badge: "Disintermediazione", color: "amber", title: "Commissioni Booking e OTA: quanto costano e come ridurle", meta: "Guida · 8 min", href: PILLAR },
-  { badge: "Revenue", color: "blue", label: "Revenue management — presto", soon: true },
-  { badge: "Upselling", color: "green", label: "Upselling & esperienze — presto", soon: true },
+// Metadata della home: title assoluto (niente template "%s — ...") e
+// description orientata alle query di ingresso (commissioni OTA, diretto).
+export const metadata: Metadata = {
+  title: { absolute: "Hub Hotel Manager — Guide e strumenti per il tuo hotel" },
+  description:
+    "L'hub per gli albergatori indipendenti italiani: guide pratiche, strumenti e analisi per ridurre le commissioni OTA, disintermediare e far crescere le prenotazioni dirette del tuo hotel.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
+    description:
+      "Guide pratiche, strumenti e analisi per ridurre le commissioni OTA e far crescere le prenotazioni dirette del tuo hotel.",
+    url: SITE.url,
+  },
+};
+
+// Roadmap a 7 cluster (master: CONTESTO/Sito_web/Cluster/00-master-keyword.md).
+// In home: card piena solo per il cluster attivo; i futuri restano chip "in
+// arrivo" e si promuovono a card al lancio.
+const clusterAttivo = {
+  badge: "Disintermediazione & OTA",
+  title: "Riprendi il controllo della distribuzione",
+  text: "Riduci la dipendenza dai portali e fai crescere le prenotazioni dirette, senza perdere visibilità. Guida completa, casi pratici e strumenti: il primo pilastro dell'hub è già online.",
+};
+const clusterInArrivo = [
+  "Revenue management",
+  "Upselling & esperienze",
+  "Prenotazioni dirette",
+  "Marketing alberghiero",
+  "AI & automazione",
+  "Software & PMS",
 ];
 
-type Cluster = { badge: string; color: string; title: string; text: string; href?: string; soon?: boolean };
-const clusters: Cluster[] = [
-  {
-    badge: "Disintermediazione & OTA",
-    color: "amber",
-    title: "Riprendi il controllo della distribuzione",
-    text: "Riduci la dipendenza dai portali e fai crescere le prenotazioni dirette, senza perdere visibilità.",
-    href: PILLAR,
-  },
-  {
-    badge: "Revenue management",
-    color: "blue",
-    title: "Tariffe che lavorano per te",
-    text: "Pricing, previsioni e dati per far crescere RevPAR e occupazione tutto l'anno.",
-    soon: true,
-  },
-  {
-    badge: "Upselling & esperienze",
-    color: "green",
-    title: "Ogni soggiorno vale di più",
-    text: "Trasforma camere, servizi ed esperienze in ricavi extra e ospiti che tornano.",
-    soon: true,
-  },
-];
-
+// Selezione e titoli brevi sono curati qui; href e cover si risolvono dal
+// frontmatter via getArticle(slug) — unica fonte di verità per le copertine.
 const featureArticles = [
-  { title: "Commissioni Booking e OTA: quanto costano e come ridurle", href: PILLAR },
-  { title: "Come pagare meno commissioni a Booking", href: `${PILLAR}/come-pagare-meno-commissioni` },
-  { title: "Commissioni Booking per host e B&B", href: `${PILLAR}/commissioni-host-bnb` },
-  { title: "Come aumentare le prenotazioni dirette", href: `${PILLAR}/aumentare-prenotazioni-dirette` },
+  { title: "Commissioni Booking e OTA: quanto costano e come ridurle", slug: "commissioni-ota" },
+  { title: "Come pagare meno commissioni a Booking", slug: "come-pagare-meno-commissioni" },
+  { title: "Commissioni Booking per host e B&B", slug: "commissioni-host-bnb" },
+  { title: "Come aumentare le prenotazioni dirette", slug: "aumentare-prenotazioni-dirette" },
+  { title: "Commissioni Booking deducibili: IVA, fattura e fisco", slug: "deducibilita-iva-fattura" },
 ];
 
 const stats = [
@@ -56,11 +66,15 @@ const personas = [
     icon: "user",
     title: "Albergatore o host indipendente",
     text: "Gestisci una struttura piccola e indossi dieci cappelli al giorno. Paghi troppe commissioni alle OTA e vuoi iniziare a vendere diretto, senza gergo tecnico e senza perdere visibilità.",
+    ctaText: "Vai alla guida per host e B&B",
+    ctaHref: `${PILLAR}/commissioni-host-bnb`,
   },
   {
     icon: "users",
     title: "Struttura più strutturata",
     text: "Coordini un team e numeri da far crescere. Vuoi ridurre la dipendenza dalle OTA, riequilibrare i canali e capire quanto pesano davvero le commissioni sul tuo margine.",
+    ctaText: "Calcola il peso delle commissioni",
+    ctaHref: CALCOLATORE,
   },
 ];
 
@@ -102,6 +116,8 @@ const faqLd = {
 };
 
 export default function Home() {
+  const pillarCover = getPillar()?.frontmatter.cover;
+  const latestPosts = getAllMagazinePosts().slice(0, 3);
   return (
     <>
       <JsonLd data={faqLd} />
@@ -118,69 +134,85 @@ export default function Home() {
             soggiorno. Sono pensati per chi gestisce un hotel in autonomia e vuole trattenere più valore su ogni
             prenotazione.
           </p>
+          {/* Una sola cattura email in pagina (banda finale): qui restano le due
+              azioni di ingresso — guide e calcolatore. */}
           <div className="hero-cta reveal" data-d="3">
             <Link className="btn btn-primary btn-lg" href={PILLAR}>
               Esplora le guide <Icon name="arrow" />
             </Link>
-          </div>
-          <div className="reveal" data-d="3">
-            <SubscribeForm variant="hero" />
-          </div>
-
-          <div className="hero-cards">
-            {heroCards.map((c) =>
-              c.soon ? (
-                <article className="gcard is-soon reveal" key={c.badge}>
-                  <div className="thumb ph">{c.badge}</div>
-                  <div className="gbody">
-                    <span className={`badge ${c.color}`}>{c.badge}</span>
-                    <h3 style={{ marginTop: 10 }}>{c.label}</h3>
-                    <div className="meta">
-                      <span className="soon-badge">presto</span>
-                    </div>
-                  </div>
-                </article>
-              ) : (
-                <Link className="gcard reveal" key={c.badge} href={c.href!}>
-                  <div className="thumb ph">copertina guida</div>
-                  <div className="gbody">
-                    <span className={`badge ${c.color}`}>{c.badge}</span>
-                    <h3 style={{ marginTop: 10 }}>{c.title}</h3>
-                    <div className="meta">{c.meta}</div>
-                  </div>
-                </Link>
-              ),
-            )}
+            <Link className="btn btn-ghost btn-lg" href={CALCOLATORE}>
+              Calcola le tue commissioni
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Vetrina cluster */}
-      <section className="band gray" id="cluster">
+      {/* Il problema, subito: i numeri del mercato */}
+      <section className="band gray">
         <div className="wrap">
           <div className="sec-head center reveal">
-            <span className="eyebrow">I tre pilastri</span>
+            <span className="eyebrow">Il mercato in numeri</span>
+            <h2 style={{ marginTop: 14 }}>Perché ora conta più che mai</h2>
+          </div>
+          <div className="stats-grid">
+            {stats.map((s) => (
+              <div className="stat reveal" key={s.num}>
+                <div className="num">{s.num}</div>
+                <div className="cap">{s.cap}</div>
+                <div className="src">Fonte: {s.src}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pilastri: card piena per l'attivo + chip per i 6 in arrivo */}
+      <section className="band" id="cluster">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow">I pilastri dell&apos;hub</span>
             <h2 style={{ marginTop: 14 }}>Come sbloccare il vero potenziale di profitto del tuo hotel</h2>
             <p className="lead">
-              Una roadmap in tre pilastri per aumentare il valore reale di ogni prenotazione. Il primo passo?
+              Una roadmap in sette pilastri per aumentare il valore reale di ogni prenotazione. Il primo passo?
               Rivoluzionare la distribuzione, riducendo l&apos;impatto delle commissioni che oggi erodono i tuoi margini.
             </p>
           </div>
-          <div className="cluster-grid">
-            {clusters.map((c) => (
-              <div className={`ccard reveal${c.soon ? " is-soon" : ""}`} key={c.badge}>
-                <span className={`badge ${c.color}`}>{c.badge}</span>
-                <h3>{c.title}</h3>
-                <p>{c.text}</p>
-                {c.soon ? (
-                  <span className="soon-badge" style={{ marginTop: 18 }}>presto</span>
-                ) : (
-                  <Link className="c-more" href={c.href!}>
-                    Scopri il cluster <Icon name="arrow" />
-                  </Link>
-                )}
-              </div>
+          <Link className="pillar-card reveal" href={PILLAR}>
+            <span
+              className="pc-cover"
+              style={pillarCover ? { backgroundImage: `url(${pillarCover})` } : undefined}
+            />
+            <span className="pc-body">
+              <span className="badge amber">{clusterAttivo.badge}</span>
+              <h3>{clusterAttivo.title}</h3>
+              <p>{clusterAttivo.text}</p>
+              <span className="c-more">
+                Scopri il cluster <Icon name="arrow" />
+              </span>
+            </span>
+          </Link>
+          <div className="soon-row reveal" data-d="1">
+            <span className="soon-label">In arrivo:</span>
+            {clusterInArrivo.map((c) => (
+              <span className="soon-chip" key={c}>{c}</span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Calcolatore: il problema sui tuoi numeri */}
+      <section className="band dark">
+        <div className="wrap calc-cta">
+          <span className="eyebrow reveal">Lo strumento</span>
+          <h2 className="reveal" data-d="1" style={{ marginTop: 16 }}>Quanto ti costano davvero le OTA?</h2>
+          <p className="lead reveal" data-d="2">
+            Mettici i tuoi numeri: il calcolatore ti mostra in due minuti quanto paghi di commissioni ogni anno e
+            quanto recupereresti spostando prenotazioni sul canale diretto. Gratis, senza registrazione.
+          </p>
+          <div className="reveal" data-d="3">
+            <Link className="btn btn-primary" href={CALCOLATORE}>
+              Calcola le tue commissioni <Icon name="arrow" />
+            </Link>
           </div>
         </div>
       </section>
@@ -203,36 +235,54 @@ export default function Home() {
               </Link>
             </div>
             <div className="split-panel reveal" data-d="1">
-              {featureArticles.map((a) => (
-                <Link className="acard" key={a.href} href={a.href}>
-                  <div className="athumb ph" />
-                  <div className="abody">
-                    <span className="badge amber">Disintermediazione</span>
-                    <h4>{a.title}</h4>
-                    <div className="ameta">Guida · Disintermediazione</div>
-                  </div>
-                </Link>
-              ))}
+              {featureArticles.map((f) => {
+                const art = getArticle(f.slug);
+                const cover = art.frontmatter.cover;
+                return (
+                  <Link className="acard" key={f.slug} href={art.href}>
+                    {cover ? (
+                      <div
+                        className="athumb"
+                        style={{ backgroundImage: `url(${cover})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                      />
+                    ) : (
+                      <div className="athumb cover-gen amber">
+                        <Icon name="compass" />
+                      </div>
+                    )}
+                    <div className="abody">
+                      <span className="badge amber">Disintermediazione</span>
+                      <h4>{f.title}</h4>
+                      <div className="ameta">Guida · Disintermediazione</div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Ultime dal Magazine: si auto-alimenta a ogni pubblicazione */}
       <section className="band gray">
         <div className="wrap">
           <div className="sec-head center reveal">
-            <span className="eyebrow">Il mercato in numeri</span>
-            <h2 style={{ marginTop: 14 }}>Perché ora conta più che mai</h2>
+            <span className="eyebrow">Dal Magazine</span>
+            <h2 style={{ marginTop: 14 }}>Le ultime per il tuo hotel</h2>
+            <p className="lead">
+              Notizie e analisi dal settore — OTA, mercato, tecnologia — spiegate per l&apos;albergatore italiano, con i
+              numeri e le fonti.
+            </p>
           </div>
-          <div className="stats-grid">
-            {stats.map((s) => (
-              <div className="stat reveal" key={s.num}>
-                <div className="num">{s.num}</div>
-                <div className="cap">{s.cap}</div>
-                <div className="src">Fonte: {s.src}</div>
-              </div>
+          <div className="home-mag-grid">
+            {latestPosts.map((p) => (
+              <MagazineCard post={p} key={p.slug} />
             ))}
+          </div>
+          <div className="sec-foot center reveal">
+            <Link className="text-link" href={MAGAZINE_BASE}>
+              Tutto il Magazine <Icon name="arrow" />
+            </Link>
           </div>
         </div>
       </section>
@@ -256,8 +306,8 @@ export default function Home() {
                 </span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
-                <Link className="text-link" href={PILLAR}>
-                  Inizia da qui <Icon name="arrow" />
+                <Link className="text-link" href={p.ctaHref}>
+                  {p.ctaText} <Icon name="arrow" />
                 </Link>
               </div>
             ))}

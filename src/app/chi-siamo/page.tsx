@@ -39,16 +39,24 @@ const doCards: DoCard[] = [
     text: "Calcolatori e simulatori per stimare costi e opportunità in pochi minuti. Il primo, il calcolatore delle commissioni OTA, è già online.",
     href: "/strumenti/calcolatore-commissioni-ota",
     cta: "Scopri il calcolatore",
-    soon: true,
   },
   {
     icon: "download",
     title: "Risorse",
-    text: "Approfondimenti scaricabili che mettono insieme i passaggi principali di un tema. La guida alla disintermediazione è la prima in preparazione.",
-    href: "/risorse/guida-disintermediazione",
-    cta: "Scopri la guida",
-    soon: true,
+    text: "Il Magazine con le notizie del settore lette per l'albergatore e gli approfondimenti scaricabili: la guida alla disintermediazione è la prima in preparazione.",
+    href: "/risorse",
+    cta: "Esplora le risorse",
   },
+];
+
+// Roadmap a 7 cluster (stessa fonte della home): 1 online + 6 in arrivo.
+const clusterInArrivo = [
+  "Revenue management",
+  "Upselling & esperienze",
+  "Prenotazioni dirette",
+  "Marketing alberghiero",
+  "AI & automazione",
+  "Software & PMS",
 ];
 
 const aboutLd = {
@@ -132,6 +140,16 @@ export default function ChiSiamo() {
               quanto le informazioni su cui si basa. Niente promesse facili: solo materiale chiaro, aggiornato e
               costruito per chi gestisce una struttura giorno per giorno.
             </p>
+            <p>
+              L&apos;hub cresce un pilastro alla volta: il primo, su disintermediazione e commissioni OTA, è{" "}
+              <Link href="/commissioni-ota">già online</Link>.
+            </p>
+          </div>
+          <div className="soon-row left reveal">
+            <span className="soon-label">In arrivo:</span>
+            {clusterInArrivo.map((c) => (
+              <span className="soon-chip" key={c}>{c}</span>
+            ))}
           </div>
         </div>
       </section>

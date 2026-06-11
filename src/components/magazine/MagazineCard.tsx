@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { getCategoria } from "@/lib/taxonomy";
 import { formatDate, type MagazinePost } from "@/lib/magazine";
 
 // Card di un articolo del Magazine. Con cover (se presente) + badge categoria +
 // pill "Notizia" sulle news. `featured` la rende grande (con sintesi).
+// Cover via next/image (fill): AVIF/WebP responsive e lazy-load automatici.
 export function MagazineCard({ post, featured = false }: { post: MagazinePost; featured?: boolean }) {
   const fm = post.frontmatter;
   const cat = getCategoria(fm.categoria);
@@ -12,8 +14,22 @@ export function MagazineCard({ post, featured = false }: { post: MagazinePost; f
 
   return (
     <Link className={`mag-card${featured ? " is-featured" : ""}`} href={post.href}>
-      <div className="mag-cover" style={fm.cover ? { backgroundImage: `url(${fm.cover})` } : undefined}>
-        {!fm.cover && <span className="mag-cover-ph">{cat?.label ?? "Magazine"}</span>}
+      <div className="mag-cover">
+        {fm.cover && (
+          <Image
+            src={fm.cover}
+            alt={fm.title}
+            fill
+            sizes={featured ? "(max-width: 860px) 100vw, 560px" : "(max-width: 700px) 100vw, 400px"}
+            style={{ objectFit: "cover" }}
+          />
+        )}
+        {!fm.cover && (
+          <span className={`cover-gen ${cat?.color ?? "blue"}`}>
+            <Icon name={cat?.icon ?? "newspaper"} />
+            <span className="cg-label">{cat?.label ?? "Magazine"}</span>
+          </span>
+        )}
         {isNews && <span className="mag-pill"><Icon name="newspaper" /> Notizia</span>}
       </div>
       <div className="mag-body">

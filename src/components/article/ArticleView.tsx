@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
@@ -18,6 +19,19 @@ function formatDate(iso?: string): string {
   }
 }
 
+// Autore "redazione estesa" (E-E-A-T): stessa entità in schema e in pagina,
+// agganciata all'Organization del layout via @id e sameAs dei partner.
+const AUTHOR_LD = {
+  "@type": "Organization",
+  "@id": `${SITE.url}/#redazione`,
+  name: "Redazione Hub Hotel Manager",
+  url: `${SITE.url}/chi-siamo`,
+  description:
+    "La redazione di Hub Hotel Manager: contenuti curati con Green Consulting e Staymore, realtà che lavorano ogni giorno con gli hotel indipendenti italiani.",
+  sameAs: SITE.partners.map((p) => p.url),
+  parentOrganization: { "@id": `${SITE.url}/#organization` },
+};
+
 export function ArticleView({
   article,
   related,
@@ -30,6 +44,7 @@ export function ArticleView({
   const fm = article.frontmatter;
   const url = `${SITE.url}${article.href}`;
   const updated = formatDate(fm.updated);
+  const isTofu = (fm.funnel ?? "").toUpperCase() === "TOFU";
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -38,8 +53,9 @@ export function ArticleView({
     description: fm.descrizione,
     inLanguage: "it-IT",
     ...(fm.updated ? { datePublished: fm.updated, dateModified: fm.updated } : {}),
-    author: { "@type": "Organization", name: "Redazione Hub Hotel Manager" },
-    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    ...(fm.cover ? { image: `${SITE.url}${fm.cover}` } : {}),
+    author: AUTHOR_LD,
+    publisher: { "@type": "Organization", "@id": `${SITE.url}/#organization`, name: SITE.name, url: SITE.url },
     mainEntityOfPage: url,
   };
 
@@ -107,6 +123,19 @@ export function ArticleView({
             )}
           </div>
         </header>
+
+        {fm.cover && (
+          <div className="guide-hero-cover">
+            <Image
+              src={fm.cover}
+              alt={fm.title}
+              fill
+              priority
+              sizes="(max-width: 1100px) 100vw, 1060px"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        )}
       </div>
 
       <div className="wrap">
@@ -124,7 +153,48 @@ export function ArticleView({
             </aside>
           )}
         </div>
+
+        {/* Chi scrive (E-E-A-T): stessa entità dell'author nello schema. */}
+        <aside className="author-box" aria-label="Chi scrive">
+          <span className="author-ico">
+            <Icon name="users" />
+          </span>
+          <div>
+            <strong>Redazione Hub Hotel Manager</strong>
+            <p>
+              Contenuti curati con <a href={SITE.partners[0].url} target="_blank" rel="noopener">Green Consulting</a> e{" "}
+              <a href={SITE.partners[1].url} target="_blank" rel="noopener">Staymore</a>, realtà che lavorano ogni
+              giorno con gli hotel indipendenti italiani. <Link href="/chi-siamo">Scopri chi siamo</Link>.
+            </p>
+          </div>
+        </aside>
       </div>
+
+      {/* CTA per stadio di funnel: il TOFU (pilastro) spinge al calcolatore,
+          che rende il problema concreto; nei MOFU resta la cattura email
+          inline (CtaWaitlist) e un rimando contestuale allo strumento. */}
+      {isTofu ? (
+        <section className="band dark">
+          <div className="wrap calc-cta">
+            <h2>Quanto ti costano davvero le OTA?</h2>
+            <p className="lead">
+              Mettici i tuoi numeri: il calcolatore ti mostra in due minuti quanto paghi di commissioni ogni anno e
+              quanto recupereresti spostando prenotazioni sul canale diretto. Gratis, senza registrazione.
+            </p>
+            <Link className="btn btn-primary" href="/strumenti/calcolatore-commissioni-ota">
+              Calcola le tue commissioni <Icon name="arrow" />
+            </Link>
+          </div>
+        </section>
+      ) : (
+        <div className="wrap">
+          <p className="tool-note">
+            <Icon name="calc" /> Vuoi capire quanto pesano questi numeri sulla tua struttura?{" "}
+            <Link href="/strumenti/calcolatore-commissioni-ota">Prova il calcolatore commissioni OTA</Link>: gratuito,
+            senza registrazione.
+          </p>
+        </div>
+      )}
 
       {related.length > 0 && (
         <section className="band gray">
@@ -136,6 +206,9 @@ export function ArticleView({
             <div className="spoke-grid">
               {related.map((a) => (
                 <Link className="spoke" key={a.slug} href={a.href}>
+                  {a.frontmatter.cover && (
+                    <span className="spoke-cover" style={{ backgroundImage: `url(${a.frontmatter.cover})` }} />
+                  )}
                   <span className="badge amber">
                     <Icon name="compass" /> {CLUSTER.badge}
                   </span>
