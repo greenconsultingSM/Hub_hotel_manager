@@ -50,9 +50,7 @@ const clusterInArrivo = [
 const featureArticles = [
   { title: "Commissioni Booking e OTA: quanto costano e come ridurle", slug: "commissioni-ota" },
   { title: "Come pagare meno commissioni a Booking", slug: "come-pagare-meno-commissioni" },
-  { title: "Commissioni Booking per host e B&B", slug: "commissioni-host-bnb" },
   { title: "Come aumentare le prenotazioni dirette", slug: "aumentare-prenotazioni-dirette" },
-  { title: "Commissioni Booking deducibili: IVA, fattura e fisco", slug: "deducibilita-iva-fattura" },
 ];
 
 const stats = [
@@ -64,10 +62,10 @@ const stats = [
 const personas = [
   {
     icon: "user",
-    title: "Albergatore o host indipendente",
-    text: "Gestisci una struttura piccola e indossi dieci cappelli al giorno. Paghi troppe commissioni alle OTA e vuoi iniziare a vendere diretto, senza gergo tecnico e senza perdere visibilità.",
-    ctaText: "Vai alla guida per host e B&B",
-    ctaHref: `${PILLAR}/commissioni-host-bnb`,
+    title: "Albergatore indipendente",
+    text: "Gestisci un hotel piccolo e indossi dieci cappelli al giorno. Paghi troppe commissioni alle OTA e vuoi iniziare a vendere diretto, senza gergo tecnico e senza perdere visibilità.",
+    ctaText: "Vai alla guida sulle commissioni OTA",
+    ctaHref: PILLAR,
   },
   {
     icon: "users",
@@ -85,7 +83,7 @@ const faqItems: FaqEntry[] = [
   },
   {
     q: "Per chi è?",
-    a: "Per chi gestisce un hotel in autonomia: dagli host e dalle strutture a conduzione familiare fino alle realtà più strutturate, che vogliono ridurre la dipendenza dalle OTA e aumentare le prenotazioni dirette.",
+    a: "Per chi gestisce un hotel in autonomia: dalle strutture a conduzione familiare fino alle realtà più strutturate, che vogliono ridurre la dipendenza dalle OTA e aumentare le prenotazioni dirette.",
   },
   {
     q: "È gratis?",

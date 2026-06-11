@@ -85,7 +85,7 @@ export default function VoceDisintermediazione() {
 
               <h2>Esempio pratico</h2>
               <p>
-                Un B&amp;B riceve 100 prenotazioni al mese, tutte da Booking.com, con una commissione del 18%. Avviando
+                Un hotel riceve 100 prenotazioni al mese, tutte da Booking.com, con una commissione del 18%. Avviando
                 un percorso di disintermediazione — sito con motore di prenotazione, un vantaggio esclusivo per chi
                 prenota diretto, cura della relazione post-soggiorno — sposta 20 di quelle prenotazioni sul canale
                 diretto. Su quelle 20 non versa più la commissione: il margine torna intero. Le altre 80 continuano ad

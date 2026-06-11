@@ -33,18 +33,18 @@ const learn = [
 const chapters: [string, string, string, boolean, boolean][] = [
   ["Capitolo 01", "Quanto ti costano davvero le OTA", "Il costo reale della commissione, oltre la percentuale nominale: come incide sul margine di ogni prenotazione.", true, false],
   ["Capitolo 02", "Le leve per pagare meno", "Le azioni legittime per ridurre il costo dei portali, senza sparire dai risultati di ricerca.", false, false],
-  ["Capitolo 03", "Il fisco delle commissioni", "Deducibilità regime per regime, IVA e reverse charge, fattura e ritenuta, alle regole 2026.", false, false],
-  ["Capitolo 04", "Host e B&B: quanto pagate davvero", "La trattenuta reale oltre la nominale e il confronto corretto tra i portali, per chi non ha Partita IVA.", false, false],
+  ["Capitolo 03", "Il fisco delle commissioni", "Costo deducibile, reverse charge e i controlli da fare sulla fattura delle commissioni dell'hotel.", false, false],
+  ["Capitolo 04", "Il confronto reale tra canali", "Booking, Expedia, Airbnb e metasearch: quanto costa davvero farsi trovare su ciascun canale.", false, false],
   ["Capitolo 05", "Costruire il canale diretto", "La roadmap in quattro fasi per far crescere le prenotazioni dirette e renderle misurabili.", false, false],
   ["Capitolo 06", "Il metodo in 90 giorni", "Tredici settimane scandite, ognuna con un'azione e un indicatore misurabile. Solo nell'ebook.", false, true],
   ["Capitolo 07", "L'audit della tua dipendenza OTA", "Venti domande in quattro aree, con soglie interpretate per capire da dove partire. Solo nell'ebook.", false, true],
 ];
 
-// Correlate: copre i tre temi dell'ebook (costo, fisco, canale diretto);
+// Correlate: copre i temi dell'ebook (costo delle OTA, canale diretto);
 // titolo breve curato qui, cover/href dal frontmatter via getArticle.
 const related = [
   { title: "Commissioni Booking e OTA: la guida completa", slug: "commissioni-ota", meta: "Pilastro · Disintermediazione" },
-  { title: "Commissioni deducibili? IVA, fattura e fisco", slug: "deducibilita-iva-fattura", meta: "Guida · Disintermediazione" },
+  { title: "Come pagare meno commissioni a Booking", slug: "come-pagare-meno-commissioni", meta: "Guida · Disintermediazione" },
   { title: "Come aumentare le prenotazioni dirette", slug: "aumentare-prenotazioni-dirette", meta: "Guida · Disintermediazione" },
 ];
 

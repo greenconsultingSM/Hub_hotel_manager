@@ -4,10 +4,10 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 // Calcolatore commissioni OTA — tool libero, 100% lato client (nessun backend).
 // Modello validato: vedi CONTESTO/Sito_web/metodo-calcolatore-ota.md.
-// Scelte: risparmio NETTO (sottrae il CAC del diretto); toggle IVA host senza
-// P.IVA; value uplift 516/312 solo come nota (non nel calcolo).
+// Scelte: risparmio NETTO (sottrae il CAC del diretto); value uplift 516/312
+// solo come nota (non nel calcolo).
 
-const AIRBNB_FEE = 0.155; // host-only fee Italia/EU (Airbnb ufficiale, art. 1857)
+const AIRBNB_FEE = 0.155; // commissione a carico della struttura, Italia/EU (Airbnb ufficiale, art. 1857)
 
 const eur = (n: number, dp = 0) =>
   new Intl.NumberFormat("it-IT", {
@@ -27,13 +27,12 @@ type State = {
   adr: number;
   qOTA: number;
   cOTA: number;
-  hostNoVat: boolean;
   shift: number;
   cac: number;
   be: number;
 };
 
-const DEFAULTS: State = { camere: 20, occ: 70, adr: 155, qOTA: 61, cOTA: 18, hostNoVat: false, shift: 20, cac: 11, be: 100 };
+const DEFAULTS: State = { camere: 20, occ: 70, adr: 155, qOTA: 61, cOTA: 18, shift: 20, cac: 11, be: 100 };
 
 // Anima il numero verso il target (easing cubic-out). Primo render statico;
 // rispetta prefers-reduced-motion.
@@ -116,14 +115,13 @@ export function CommissionCalculator() {
   const [s, setS] = useState<State>(DEFAULTS);
   const set = <K extends keyof State>(k: K) => (v: State[K]) => setS((p) => ({ ...p, [k]: v }));
 
-  const iva = s.hostNoVat ? 1.22 : 1;
   const notti = s.camere * 365 * (s.occ / 100);
   const ricavo = notti * s.adr;
   const ricavoOTA = ricavo * (s.qOTA / 100);
-  const costoOTA = ricavoOTA * (s.cOTA / 100) * iva;
+  const costoOTA = ricavoOTA * (s.cOTA / 100);
 
   const rShift = ricavoOTA * (s.shift / 100);
-  const commRisp = rShift * (s.cOTA / 100) * iva;
+  const commRisp = rShift * (s.cOTA / 100);
   const costoDir = rShift * (s.cac / 100);
   const risparmio = commRisp - costoDir;
 
@@ -133,9 +131,9 @@ export function CommissionCalculator() {
   // (costo ricorrente: sotto quella soglia non si ripaga MAI, non "in più mesi").
   const payback = risparmio > costoBE ? costoBE / (risparmio / 12) : null;
 
-  const otaNet = 100 * (1 - (s.cOTA / 100) * iva);
+  const otaNet = 100 * (1 - s.cOTA / 100);
   const dirNet = 100 * (1 - s.cac / 100);
-  const airbnbNet = 100 * (1 - AIRBNB_FEE * iva);
+  const airbnbNet = 100 * (1 - AIRBNB_FEE);
   const channels = [
     { k: "Diretto", v: dirNet, accent: true },
     { k: "Airbnb", v: airbnbNet, accent: false },
@@ -155,15 +153,6 @@ export function CommissionCalculator() {
           <Num label="Prezzo medio a notte (ADR)" suffix="€" value={s.adr} onChange={set("adr")} />
           <Num label="Quota prenotazioni via OTA" suffix="%" value={s.qOTA} onChange={set("qOTA")} max={100} />
           <Num label="Commissione media OTA" hint="es. 15–18%" suffix="%" value={s.cOTA} onChange={set("cOTA")} max={100} step={0.5} />
-
-          <label className="calc-toggle">
-            <input type="checkbox" checked={s.hostNoVat} onChange={(e) => set("hostNoVat")(e.target.checked)} />
-            <span className="switch" aria-hidden="true" />
-            <span>
-              Sono un host <strong>senza Partita IVA</strong>
-              <em>stima: aggiunge l&apos;IVA 22% sulla commissione (non recuperabile) — verifica col tuo commercialista</em>
-            </span>
-          </label>
 
           <details className="calc-adv">
             <summary>Ipotesi avanzate (modificabili)</summary>
@@ -185,7 +174,7 @@ export function CommissionCalculator() {
           <div className="r-label">Quanto ti costano le OTA</div>
           <div className="r-big">{eur(bigShown)}</div>
           <div className="r-cap">
-            all&apos;anno in commissioni (~{eur(costoOTA / 12)}/mese){s.hostNoVat ? ", IVA 22% inclusa" : ""}.
+            all&apos;anno in commissioni (~{eur(costoOTA / 12)}/mese).
           </div>
 
           <div className="r-sub">

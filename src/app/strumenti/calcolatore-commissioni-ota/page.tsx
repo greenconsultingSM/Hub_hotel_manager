@@ -9,12 +9,10 @@ import { SITE } from "@/lib/site";
 
 const GC = SITE.partners.find((p) => p.name === "Green Consulting")?.url ?? "https://greenconsulting.it";
 
-// Tool libero (nessun gate), INDICIZZATO (go-live 2026-06-09). La superficie
-// fiscale è un solo toggle opzionale (IVA 22% host senza P.IVA), presentato come
-// stima e coperto da disclaimer "non sostituisce il commercialista": non è
-// contenuto YMYL di guida, quindi non è gated sulla validazione del commercialista
-// (che resta necessaria solo per la spoke deducibilita-iva-fattura). Gap booking
-// engine IT chiuso (metodo-calcolatore-ota §6, 2026-06-09).
+// Tool libero (nessun gate), INDICIZZATO (go-live 2026-06-09). Nessuna
+// superficie fiscale nel calcolo: la nota a piè di tool resta una stima coperta
+// da disclaimer "non sostituisce il commercialista". Gap booking engine IT
+// chiuso (metodo-calcolatore-ota §6, 2026-06-09).
 export const metadata: Metadata = {
   title: "Calcolatore commissioni OTA",
   description:
@@ -72,9 +70,8 @@ export default function CalcolatoreCommissioniOta() {
 
           <p className="tool-note">
             Stime indicative a scopo informativo, basate sui dati che inserisci e su benchmark di mercato (commissioni
-            OTA 15–18%, costo del diretto ~11%, booking engine ~€100/mese, Airbnb host-only 15,5%). La{" "}
-            <strong>ritenuta della cedolare secca (21%)</strong> è un&apos;imposta dovuta a prescindere dal canale e
-            non entra nel confronto. Le voci fiscali non sostituiscono il parere di un commercialista.{" "}
+            OTA 15–18%, costo del diretto ~11%, booking engine ~€100/mese, commissione Airbnb a carico della struttura
+            15,5%). Le voci fiscali non sostituiscono il parere di un commercialista.{" "}
             <Link href="/commissioni-ota">Approfondisci le commissioni OTA</Link>.
           </p>
         </div>
