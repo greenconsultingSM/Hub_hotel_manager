@@ -5,7 +5,7 @@ import { SubscribeForm } from "@/components/SubscribeForm";
 import { Faq, type FaqEntry } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
-import { getArticle, getPillar } from "@/lib/articles";
+import { getFeatured, getPillar } from "@/lib/articles";
 import { getAllMagazinePosts, MAGAZINE_BASE } from "@/lib/magazine";
 import { MagazineCard } from "@/components/magazine/MagazineCard";
 
@@ -45,18 +45,10 @@ const clusterInArrivo = [
   "Software & PMS",
 ];
 
-// Selezione e titoli brevi sono curati qui; href e cover si risolvono dal
-// frontmatter via getArticle(slug) — unica fonte di verità per le copertine.
-const featureArticles = [
-  { title: "Commissioni Booking e OTA: quanto costano e come ridurle", slug: "commissioni-ota" },
-  { title: "Come pagare meno commissioni a Booking", slug: "come-pagare-meno-commissioni" },
-  { title: "Come aumentare le prenotazioni dirette", slug: "aumentare-prenotazioni-dirette" },
-];
-
 const stats = [
-  { num: "15-18%", cap: "Le OTA trattengono in media il 15-18% di commissione su ogni prenotazione intermediata di una struttura indipendente.", src: "Booking.com for Partners" },
-  { num: "+60%", cap: "Una prenotazione diretta vale in media US$516 contro US$312 da OTA: circa il 60% di ricavo in più per soggiorno.", src: "SiteMinder, Hotel Booking Trends 2025" },
-  { num: "~61%", cap: "Gli albergatori indipendenti cedono alle OTA circa il 61% delle proprie prenotazioni.", src: "Skift Research" },
+  { num: "15-18%", cap: "Le OTA trattengono in media il 15-18% di commissione su ogni prenotazione intermediata di una struttura indipendente.", src: "Stime di settore convergenti" },
+  { num: "+65%", cap: "Una prenotazione diretta vale in media US$516 contro US$312 da OTA: circa il 65% di ricavo in più per soggiorno.", src: "SiteMinder, Hotel Booking Trends (dati 2025)" },
+  { num: "~61%", cap: "Gli albergatori indipendenti cedono alle OTA circa il 61% delle proprie prenotazioni.", src: "Cloudbeds, State of Independent Lodging 2025" },
 ];
 
 const personas = [
@@ -115,6 +107,7 @@ const faqLd = {
 
 export default function Home() {
   const pillarCover = getPillar()?.frontmatter.cover;
+  const featured = getFeatured();
   const latestPosts = getAllMagazinePosts().slice(0, 3);
   return (
     <>
@@ -233,11 +226,10 @@ export default function Home() {
               </Link>
             </div>
             <div className="split-panel reveal" data-d="1">
-              {featureArticles.map((f) => {
-                const art = getArticle(f.slug);
+              {featured.map((art) => {
                 const cover = art.frontmatter.cover;
                 return (
-                  <Link className="acard" key={f.slug} href={art.href}>
+                  <Link className="acard" key={art.slug} href={art.href}>
                     {cover ? (
                       <div
                         className="athumb"
@@ -250,7 +242,7 @@ export default function Home() {
                     )}
                     <div className="abody">
                       <span className="badge amber">Disintermediazione</span>
-                      <h4>{f.title}</h4>
+                      <h4>{art.frontmatter.title}</h4>
                       <div className="ameta">Guida · Disintermediazione</div>
                     </div>
                   </Link>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
+import { Faq } from "@/components/Faq";
 import { SITE } from "@/lib/site";
 import { CLUSTER, type Article } from "@/lib/articles";
 
@@ -169,6 +170,17 @@ export function ArticleView({
           </div>
         </aside>
       </div>
+
+      {/* FAQ collassabili: stesse coppie del JSON-LD FAQPage (article.faq).
+          L'id combacia con lo slug TOC "Domande frequenti" → "domande-frequenti". */}
+      {article.faq.length > 0 && (
+        <div className="wrap">
+          <h2 id="domande-frequenti" className="faq-articolo-title">
+            Domande frequenti
+          </h2>
+          <Faq items={article.faq} />
+        </div>
+      )}
 
       {/* CTA per stadio di funnel: il TOFU (pilastro) spinge al calcolatore,
           che rende il problema concreto; nei MOFU resta la cattura email

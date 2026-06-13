@@ -28,6 +28,9 @@ export type Frontmatter = {
   // index: false → pagina noindex,follow (es. bozza YMYL in attesa di validazione
   // di un commercialista): esclusa da sitemap e llms.txt, ma raggiungibile e crawlabile.
   index?: boolean;
+  // featured: true → l'articolo entra nella vetrina curata in home (cap 4).
+  // Selezione manuale: i nuovi contenuti NON entrano se non lo dichiarano.
+  featured?: boolean;
   [key: string]: unknown;
 };
 
@@ -80,6 +83,22 @@ function extractFaq(body: string): FaqItem[] {
   return out;
 }
 
+// Rimuove la sezione "## Domande frequenti | FAQ" dal corpo: la FAQ viene
+// renderizzata come accordion <Faq> in ArticleView (da article.faq), non come
+// prosa. Stessa logica di delimitazione di extractFaq: dalla heading fino alla
+// sezione `##` successiva o a un `---`/fine file.
+function stripFaqSection(body: string): string {
+  const start = body.search(/^##\s+(Domande frequenti|FAQ)\b/im);
+  if (start === -1) return body;
+  const after = body.slice(start);
+  const nextHeading = after.slice(3).search(/^##\s+/m);
+  const nextRule = after.slice(3).search(/^---\s*$/m);
+  let end = after.length;
+  if (nextHeading !== -1) end = Math.min(end, nextHeading + 3);
+  if (nextRule !== -1) end = Math.min(end, nextRule + 3);
+  return (body.slice(0, start) + after.slice(end)).trim();
+}
+
 // Pulisce e prepara il corpo MDX: via frontmatter (gray-matter), commenti HTML,
 // primo H1, note redazionali; CTA e diagrammi diventano componenti.
 function transformBody(raw: string): string {
@@ -123,7 +142,11 @@ export function getArticle(slug: string): Article {
     updated: rawUpdated instanceof Date ? rawUpdated.toISOString().slice(0, 10) : (rawUpdated as string | undefined),
   };
   const isPillar = fm.tipo === "pilastro";
-  const body = transformBody(content);
+  // TOC dal corpo completo (include "Domande frequenti", la cui ancora è resa
+  // dall'accordion <Faq> in ArticleView); il body servito alla prosa ha invece
+  // la sezione FAQ rimossa, perché viene renderizzata come accordion.
+  const fullBody = transformBody(content);
+  const body = stripFaqSection(fullBody);
   const words = content.split(/\s+/).filter(Boolean).length;
   return {
     slug: fm.slug ?? slug,
@@ -131,7 +154,7 @@ export function getArticle(slug: string): Article {
     href: hrefFor(fm.slug ?? slug, isPillar),
     frontmatter: fm,
     body,
-    toc: extractToc(body),
+    toc: extractToc(fullBody),
     faq: extractFaq(content),
     readingMinutes: Math.max(1, Math.round(words / 200)),
   };
@@ -147,4 +170,16 @@ export function getPillar(): Article | null {
 
 export function getSpokes(): Article[] {
   return getAllArticles().filter((a) => !a.isPillar);
+}
+
+// Vetrina home curata: solo articoli con `featured: true` nel frontmatter,
+// pilastro per primo, poi per data di aggiornamento decrescente, cap a 4.
+export function getFeatured(): Article[] {
+  return getAllArticles()
+    .filter((a) => a.frontmatter.featured === true)
+    .sort((a, b) => {
+      if (a.isPillar !== b.isPillar) return a.isPillar ? -1 : 1;
+      return (b.frontmatter.updated ?? "").localeCompare(a.frontmatter.updated ?? "");
+    })
+    .slice(0, 4);
 }

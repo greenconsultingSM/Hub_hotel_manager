@@ -337,6 +337,7 @@ section{position:relative;}
 .text-link:hover svg{transform:translateX(4px);}
 
 /* ============ FAQ ============ */
+.faq-articolo-title{max-width:840px;margin:48px auto 18px;font-size:clamp(26px,3vw,36px);letter-spacing:-.01em;scroll-margin-top:120px;}
 .faq{max-width:840px;margin:0 auto;}
 .faq-item{border-bottom:1px solid var(--line);}
 .faq-q{
@@ -437,6 +438,8 @@ footer{background:#0e0e0e;color:#fff;padding:78px 0 36px;}
   .nav-right .btn .btn-label{display:none;}
   .band{padding:74px 0;}
   .split-panel{grid-template-columns:1fr;}
+  /* tabelle articoli: scroll orizzontale su mobile senza sforare la colonna */
+  .prose table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .foot-top{grid-template-columns:1fr;}
   .hero-cards .gcard:nth-child(1),.hero-cards .gcard:nth-child(3){transform:none;}
 }
@@ -534,6 +537,10 @@ footer{background:#0e0e0e;color:#fff;padding:78px 0 36px;}
 .prose a{color:#96610a;font-weight:600;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(184,119,10,.35);}
 .prose a:hover{text-decoration-color:var(--amber);}
 .prose blockquote{margin:0 0 18px;padding:14px 20px;border-left:3px solid var(--amber);background:rgba(245,158,11,.06);border-radius:0 var(--r-sm) var(--r-sm) 0;color:var(--ink-soft);max-width:680px;}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 22px;font-size:16px;}
+.prose caption{caption-side:top;text-align:left;font-size:13.5px;color:var(--ink-faint);font-style:italic;margin-bottom:8px;}
+.prose th,.prose td{border:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.5;}
+.prose th{background:var(--panel);font-weight:700;font-size:15px;}
 .guide-figure{margin:10px 0 26px;}
 .guide-figure .ph{height:300px;}
 .guide-figure figcaption{margin-top:11px;font-size:13.5px;color:var(--ink-faint);font-weight:600;text-align:center;}
