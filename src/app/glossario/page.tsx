@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 const DEF =
   "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari — le OTA come Booking.com ed Expedia — spostando la prenotazione sul proprio canale diretto. L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
 
+const DEF_RATE_PARITY =
+  "La rate parity (o parità tariffaria) è la clausola con cui un hotel si impegna a non offrire prezzi o condizioni migliori sui propri canali rispetto a quanto espone sulle OTA. In Italia ed Europa queste clausole sono ormai vietate: oggi puoi praticare prezzi diversi — anche migliori — sul tuo canale diretto.";
+
 // DefinedTermSet con le voci del glossario (oggi una): le pagine voce emettono
 // il DefinedTerm completo, qui c'è l'indice semantico della raccolta.
 const glossaryLd = {
@@ -34,6 +37,12 @@ const glossaryLd = {
       name: "Disintermediazione",
       description: DEF,
       url: `${SITE.url}/glossario/disintermediazione`,
+    },
+    {
+      "@type": "DefinedTerm",
+      name: "Rate parity",
+      description: DEF_RATE_PARITY,
+      url: `${SITE.url}/glossario/rate-parity`,
     },
   ],
 };
@@ -76,6 +85,22 @@ export default function Glossario() {
                   Leggi la voce completa <Icon name="arrow" />
                 </Link>
                 <Link className="t-arrow" href="/commissioni-ota">
+                  Approfondisci nella guida <Icon name="arrow" />
+                </Link>
+              </div>
+            </article>
+
+            <article className="term-card reveal">
+              <span className="badge amber">
+                <Icon name="compass" /> Rate parity
+              </span>
+              <span className="t-name">Rate parity</span>
+              <span className="t-def">{DEF_RATE_PARITY}</span>
+              <div className="t-links">
+                <Link className="t-arrow" href="/glossario/rate-parity">
+                  Leggi la voce completa <Icon name="arrow" />
+                </Link>
+                <Link className="t-arrow" href="/commissioni-ota/rate-parity">
                   Approfondisci nella guida <Icon name="arrow" />
                 </Link>
               </div>
