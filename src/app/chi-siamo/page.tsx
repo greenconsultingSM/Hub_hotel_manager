@@ -8,12 +8,12 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Chi siamo",
-  description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare gli albergatori indipendenti a crescere.",
+  description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare chi gestisce un hotel in autonomia a crescere.",
   alternates: { canonical: "/chi-siamo" },
   openGraph: {
     type: "website",
     title: "Chi siamo — Hub Hotel Manager",
-    description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare gli albergatori indipendenti a crescere.",
+    description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare chi gestisce un hotel in autonomia a crescere.",
   },
 };
 
@@ -92,7 +92,7 @@ export default function ChiSiamo() {
             <div className="body">
               <p className="lede">
                 Hub Hotel Manager raccoglie in un unico posto guide pratiche, strumenti e analisi affidabili. Sono
-                pensati per aiutare l&apos;albergatore indipendente italiano a crescere. È un progetto di Green
+                pensati per aiutare chi gestisce un hotel in autonomia in Italia a crescere. È un progetto di Green
                 Consulting e Tourism Innovation Lab.
               </p>
             </div>
@@ -131,7 +131,7 @@ export default function ChiSiamo() {
           </div>
           <div className="rich-narrow reveal">
             <p>
-              La nostra missione è semplice: mettere a disposizione dell&apos;albergatore indipendente guide pratiche,
+              La nostra missione è semplice: mettere a disposizione di chi gestisce un hotel in autonomia guide pratiche,
               strumenti e analisi su cui poter contare, raccolti in un unico spazio. Ogni contenuto parte da un problema
               concreto della gestione quotidiana e arriva a qualcosa che puoi mettere in pratica.
             </p>

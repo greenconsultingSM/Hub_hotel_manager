@@ -108,7 +108,7 @@ export default function VoceDisintermediazione() {
           </article>
 
           <div style={{ marginTop: 32 }}>
-            <CtaWaitlist text="Sta per uscire la guida completa alla disintermediazione per l'albergatore indipendente. Lascia la tua email e la ricevi appena è pronta." />
+            <CtaWaitlist text="Sta per uscire la guida completa alla disintermediazione per chi gestisce un hotel in autonomia. Lascia la tua email e la ricevi appena è pronta." />
           </div>
         </div>
       </section>

@@ -11,7 +11,7 @@ import { cookies } from "next/headers";
 export const EBOOK = {
   slug: "guida-disintermediazione",
   titolo: "Come pagare meno commissioni alle OTA",
-  sottotitolo: "La guida pratica alla disintermediazione per l'albergatore indipendente",
+  sottotitolo: "La guida pratica alla disintermediazione per chi gestisce un hotel in autonomia",
   freeChapters: 1,
   source: "ebook-guida-disintermediazione", // source del lead + prefisso che attiva il cookie in /api/lead
 };

@@ -50,7 +50,7 @@ export function Footer() {
             </a>
           ))}
           <span className="pp" style={{ flexBasis: "100%", marginTop: 4 }}>
-            Uno spazio pensato per la crescita dell&apos;albergatore indipendente.
+            Uno spazio pensato per la crescita di chi gestisce un hotel in autonomia.
           </span>
         </div>
 

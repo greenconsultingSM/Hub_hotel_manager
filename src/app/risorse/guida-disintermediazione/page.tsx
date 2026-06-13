@@ -8,12 +8,12 @@ import { getArticle } from "@/lib/articles";
 export const metadata: Metadata = {
   title: "Guida gratuita alla disintermediazione",
   description:
-    "Come pagare meno commissioni alle OTA: la guida pratica per l'albergatore indipendente. Lascia l'email e la ricevi appena esce.",
+    "Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia. Lascia l'email e la ricevi appena esce.",
   alternates: { canonical: "/risorse/guida-disintermediazione" },
   openGraph: {
     type: "website",
     title: "Guida gratuita alla disintermediazione — Hub Hotel Manager",
-    description: "Come pagare meno commissioni alle OTA: la guida pratica per l'albergatore indipendente.",
+    description: "Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia.",
   },
 };
 
@@ -65,7 +65,7 @@ export default function GuidaRisorsa() {
               <span className="badge amber">
                 <Icon name="book" /> Ebook gratuito — leggilo online
               </span>
-              <h1>Come pagare meno commissioni alle OTA: la guida pratica per l&apos;albergatore indipendente</h1>
+              <h1>Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia</h1>
               <p className="res-sub">
                 La guida completa alla disintermediazione, scritta per chi gestisce un hotel in autonomia. Ti aiuta a
                 capire quanto pesano davvero le commissioni, a ridurle con le leve giuste e a costruire un canale diretto
@@ -91,7 +91,7 @@ export default function GuidaRisorsa() {
                 <span className="rt-kicker">Dal Capitolo 1 — anteprima libera</span>
                 <h3>Quanto ti costano davvero le OTA</h3>
                 <p>
-                  C&apos;è un numero che la maggior parte degli albergatori indipendenti non sa dire a memoria: quanto
+                  C&apos;è un numero che la maggior parte degli albergatori non sa dire a memoria: quanto
                   ha pagato di commissioni ai portali negli ultimi dodici mesi. Non la percentuale del contratto —
                   quella la conoscono tutti — ma la cifra esatta, in euro, che è uscita dalla cassa. Questo capitolo
                   serve a farti arrivare a quel numero, e a capire perché pesa molto più di quanto sembri…
@@ -108,7 +108,7 @@ export default function GuidaRisorsa() {
                 <span>
                   <span className="ec-title">Come pagare meno commissioni alle OTA</span>
                   <span className="ec-sub" style={{ display: "block" }}>
-                    La guida pratica alla disintermediazione per l&apos;albergatore indipendente
+                    La guida pratica alla disintermediazione per chi gestisce un hotel in autonomia
                   </span>
                 </span>
                 <span className="ec-foot">

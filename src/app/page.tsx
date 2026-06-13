@@ -17,7 +17,7 @@ const CALCOLATORE = "/strumenti/calcolatore-commissioni-ota";
 export const metadata: Metadata = {
   title: { absolute: "Hub Hotel Manager — Guide e strumenti per il tuo hotel" },
   description:
-    "L'hub per gli albergatori indipendenti italiani: guide pratiche, strumenti e analisi per ridurre le commissioni OTA, disintermediare e far crescere le prenotazioni dirette del tuo hotel.",
+    "L'hub per chi gestisce un hotel in autonomia in Italia: guide pratiche, strumenti e analisi per ridurre le commissioni OTA, disintermediare e far crescere le prenotazioni dirette del tuo hotel.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -48,7 +48,7 @@ const clusterInArrivo = [
 const stats = [
   { num: "15-18%", cap: "Le OTA trattengono in media il 15-18% di commissione su ogni prenotazione intermediata di una struttura indipendente.", src: "Stime di settore convergenti" },
   { num: "+65%", cap: "Una prenotazione diretta vale in media US$516 contro US$312 da OTA: circa il 65% di ricavo in più per soggiorno.", src: "SiteMinder, Hotel Booking Trends (dati 2025)" },
-  { num: "~61%", cap: "Gli albergatori indipendenti cedono alle OTA circa il 61% delle proprie prenotazioni.", src: "Cloudbeds, State of Independent Lodging 2025" },
+  { num: "~61%", cap: "Gli hotel indipendenti cedono alle OTA circa il 61% delle proprie prenotazioni.", src: "Cloudbeds, State of Independent Lodging 2025" },
 ];
 
 const personas = [
@@ -71,15 +71,15 @@ const personas = [
 const faqItems: FaqEntry[] = [
   {
     q: "Cos'è Hub Hotel Manager?",
-    a: "È un hub di contenuti dedicato agli albergatori indipendenti italiani: guide pratiche, strumenti e analisi per disintermediare le OTA e far crescere i ricavi diretti. È un progetto di Green Consulting e Tourism Innovation Lab. Al lancio è attivo il cluster sulla disintermediazione e sulle commissioni OTA; revenue management e upselling sono in arrivo.",
+    a: "È un hub di contenuti per chi gestisce un hotel in autonomia in Italia: guide pratiche, strumenti gratuiti e analisi per ridurre le commissioni OTA, disintermediare e far crescere le prenotazioni dirette. È un progetto di Green Consulting e Tourism Innovation Lab. Al lancio è attivo il cluster sulla disintermediazione e sulle commissioni OTA, con il calcolatore delle commissioni già online; revenue management e upselling sono in arrivo.",
   },
   {
     q: "Per chi è?",
-    a: "Per chi gestisce un hotel in autonomia: dalle strutture a conduzione familiare fino alle realtà più strutturate, che vogliono ridurre la dipendenza dalle OTA e aumentare le prenotazioni dirette.",
+    a: "Per chi gestisce un hotel in autonomia: dalle strutture a conduzione familiare fino alle realtà più strutturate con un team. Vale a prescindere dalla dimensione o dalle stelle, se l'obiettivo è ridurre la dipendenza dalle OTA e aumentare le prenotazioni dirette.",
   },
   {
     q: "È gratis?",
-    a: "Sì. Le guide e gli strumenti dell'hub sono gratuiti. Iscriviti agli aggiornamenti e ricevi i nuovi contenuti appena escono.",
+    a: "Sì. Tutte le guide e gli strumenti dell'hub sono gratuiti e senza registrazione obbligatoria. Se vuoi, lasci la tua email per ricevere i nuovi contenuti appena escono: è uno scambio di valore, non una barriera.",
   },
   {
     q: "Ogni quanto pubblicate nuovi contenuti?",
@@ -87,11 +87,11 @@ const faqItems: FaqEntry[] = [
   },
   {
     q: "Come funzionano gli strumenti?",
-    a: "Sono calcolatori e simulatori interattivi che danno una stima concreta in pochi minuti, direttamente dal browser. Il primo, il calcolatore delle commissioni OTA, è già online: ti mostra quanto stai pagando davvero ai portali e quanto risparmieresti spostando prenotazioni sul diretto. Altri sono in arrivo.",
+    a: "Sono calcolatori e simulatori interattivi che danno una stima concreta in pochi minuti, direttamente dal browser e senza installare nulla. Il primo, il calcolatore delle commissioni OTA, è già online: ti mostra quanto stai pagando davvero ai portali e quanto risparmieresti spostando prenotazioni sul diretto. Altri sono in arrivo.",
   },
   {
     q: "Posso proporre un argomento?",
-    a: "Sì. Costruiamo i contenuti a partire dai problemi reali degli albergatori. Iscriviti agli aggiornamenti e potrai segnalarci la tua sfida: la valutiamo per il calendario editoriale.",
+    a: "Sì. Costruiamo i contenuti a partire dai problemi reali di chi gestisce un hotel. Iscriviti agli aggiornamenti e potrai segnalarci la tua sfida: la valutiamo per il calendario editoriale.",
   },
 ];
 

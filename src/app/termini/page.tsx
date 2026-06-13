@@ -14,8 +14,8 @@ export default function Termini() {
   return (
     <LegalLayout title="Termini e condizioni d'uso" updated="8 giugno 2026" dateLabel="Ultimo aggiornamento">
       <p className="intro">
-        Il sito Hub Hotel Manager (di seguito il &quot;Sito&quot;) è un hub di contenuti informativi dedicato agli
-        albergatori indipendenti, gestito da <strong>Tourism Innovation Lab</strong>{" "}
+        Il sito Hub Hotel Manager (di seguito il &quot;Sito&quot;) è un hub di contenuti informativi dedicato a chi
+        gestisce un hotel in autonomia, gestito da <strong>Tourism Innovation Lab</strong>{" "}
         <PH>[ragione sociale, sede legale e P.IVA]</PH> (di seguito il &quot;Titolare&quot; o il &quot;Gestore&quot;),
         nell&apos;ambito di un progetto realizzato insieme a <strong>Green Consulting</strong>.
       </p>
