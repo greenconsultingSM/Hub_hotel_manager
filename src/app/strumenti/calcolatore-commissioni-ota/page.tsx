@@ -56,21 +56,21 @@ export default function CalcolatoreCommissioniOta() {
             </span>
             <h1>Calcolatore commissioni OTA</h1>
             <p className="sub">
-              Scopri quanto paghi davvero di commissioni ai portali ogni anno e quanto recupereresti — al netto dei
-              costi del diretto — spostando una parte delle prenotazioni sul tuo canale diretto.
+              Scopri quanto paghi davvero di commissioni ai portali ogni anno e quanto recupereresti, al netto dei
+              costi del diretto, spostando una parte delle prenotazioni sul tuo canale diretto.
             </p>
           </div>
 
           <p className="lead" style={{ marginTop: 28 }}>
             Niente registrazione: i numeri restano sul tuo schermo. I campi sono pre-compilati con benchmark di mercato
-            italiani — sostituiscili con i tuoi per una stima sulla tua struttura.
+            italiani: sostituiscili con i tuoi per una stima sulla tua struttura.
           </p>
 
           <CommissionCalculator />
 
           <p className="tool-note">
             Stime indicative a scopo informativo, basate sui dati che inserisci e su benchmark di mercato (commissioni
-            OTA 15–18%, costo del diretto ~11%, booking engine ~€100/mese, commissione Airbnb a carico della struttura
+            OTA 15-18%, costo del diretto ~11%, booking engine ~€100/mese, commissione Airbnb a carico della struttura
             15,5%). Le voci fiscali non sostituiscono il parere di un commercialista.{" "}
             <Link href="/commissioni-ota">Approfondisci le commissioni OTA</Link>.
           </p>
@@ -78,12 +78,12 @@ export default function CalcolatoreCommissioniOta() {
       </section>
 
       {/* Banda chiara ambrata: stacca la consulenza (GC) dalla newsletter scura
-          che segue — niente muro scuro di due bande consecutive. */}
+          che segue (niente muro scuro di due bande consecutive). */}
       <section className="band calc-gc">
         <div className="wrap calc-cta">
           <h2>Vuoi recuperare davvero questo margine?</h2>
           <p className="lead">
-            Il risparmio sul diretto non è automatico: serve un canale che converta — booking engine, sito e marketing
+            Il risparmio sul diretto non è automatico: serve un canale che converta, con booking engine, sito e marketing
             che lavorano insieme. Green Consulting aiuta gli hotel indipendenti a costruirlo.
           </p>
           <a className="btn btn-primary" href={GC} target="_blank" rel="noopener">

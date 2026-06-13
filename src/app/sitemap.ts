@@ -3,7 +3,7 @@ import { SITE } from "@/lib/site";
 import { getPillar, getSpokes, type Article } from "@/lib/articles";
 import { getIndexablePosts } from "@/lib/magazine";
 
-// Sitemap — SOLO le pagine indicizzabili (index: sì).
+// Sitemap, SOLO le pagine indicizzabili (index: sì).
 // Escluse di proposito le noindex,follow: legali (privacy/cookie/termini),
 // pagine tag e categorie del Magazine con meno di 2 articoli (thin content:
 // utili alla navigazione, fuori dall'indice finché non si popolano).

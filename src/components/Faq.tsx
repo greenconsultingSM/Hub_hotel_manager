@@ -7,8 +7,8 @@ import { Icon } from "./Icon";
 export type FaqEntry = { q: string; a: string };
 
 // Renderer inline sicuro (niente dangerouslySetInnerHTML): converte il markdown
-// inline usato nelle risposte degli articoli — **grassetto**, *corsivo* e
-// [testo](url) — in JSX. Gli href interni ("/...") usano next/link; quelli
+// inline usato nelle risposte degli articoli (**grassetto**, *corsivo* e
+// [testo](url)) in JSX. Gli href interni ("/...") usano next/link; quelli
 // esterni un <a target=_blank rel=noopener>. Le FAQ della home (testo semplice)
 // passano inalterate.
 function renderInline(text: string): ReactNode {

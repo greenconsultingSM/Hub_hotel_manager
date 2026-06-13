@@ -1,4 +1,4 @@
-// Sync ActiveCampaign (account Staymore) — SOLO lato server.
+// Sync ActiveCampaign (account Staymore), SOLO lato server.
 // Best-effort by design: se le env mancano o l'API fallisce, il chiamante salva
 // comunque il lead su Supabase con ac_synced=false e si recupera col backfill.
 // Decisioni (gate 2026-06-10/11): namespace "Hub" nell'account condiviso;
@@ -69,7 +69,7 @@ export async function syncLeadToAc(input: AcSyncInput): Promise<AcSyncResult> {
     // 3. tag: provenienza sempre; routing solo se presente.
     //    I tag si riferiscono per NOME via l'endpoint contactTags richiede l'id del
     //    tag: per semplicità il mapping nome→id si risolve alla fotografia
-    //    dell'account (env AC_TAG_*) — finché mancano, si salta senza errore.
+    //    dell'account (env AC_TAG_*); finché mancano, si salta senza errore.
     const tagIds = [
       process.env[`AC_TAG_SOURCE_${input.source.toUpperCase().replace(/-/g, "_")}`],
       input.destinazione ? process.env[`AC_TAG_LEAD_${input.destinazione.toUpperCase()}`] : undefined,

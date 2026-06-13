@@ -18,8 +18,8 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
-    template: "%s — Hub Hotel Manager",
+    default: "Hub Hotel Manager · Guide e strumenti per il tuo hotel",
+    template: "%s · Hub Hotel Manager",
   },
   description: SITE.description,
   applicationName: SITE.name,
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "it_IT",
     siteName: SITE.name,
-    title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
+    title: "Hub Hotel Manager · Guide e strumenti per il tuo hotel",
     description: SITE.description,
   },
   // L'immagine la fornisce opengraph-image.tsx (file convention); la card
   // grande fa sì che X/Twitter la usi come og:image fallback.
   twitter: {
     card: "summary_large_image",
-    title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
+    title: "Hub Hotel Manager · Guide e strumenti per il tuo hotel",
     description: SITE.description,
   },
   robots: { index: true, follow: true },

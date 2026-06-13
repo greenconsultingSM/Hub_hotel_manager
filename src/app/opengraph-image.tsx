@@ -3,7 +3,7 @@ import { SITE } from "@/lib/site";
 
 // Immagine OG di default del sito (condivisioni WhatsApp/LinkedIn/X).
 // Generata a build time: stessa palette del design system.
-export const alt = `${SITE.name} — ${SITE.tagline}`;
+export const alt = `${SITE.name} · ${SITE.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

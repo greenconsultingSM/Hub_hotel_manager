@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/glossario" },
   openGraph: {
     type: "website",
-    title: "Glossario dell'albergatore — Hub Hotel Manager",
+    title: "Glossario dell'albergatore · Hub Hotel Manager",
     description: "I termini chiave di distribuzione, commissioni e ricavi, spiegati in modo chiaro.",
   },
 };
 
 const DEF =
-  "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari — le OTA come Booking.com ed Expedia — spostando la prenotazione sul proprio canale diretto. L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
+  "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari, le OTA come Booking.com ed Expedia, spostando la prenotazione sul proprio canale diretto. L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
 
 const DEF_RATE_PARITY =
-  "La rate parity (o parità tariffaria) è la clausola con cui un hotel si impegna a non offrire prezzi o condizioni migliori sui propri canali rispetto a quanto espone sulle OTA. In Italia ed Europa queste clausole sono ormai vietate: oggi puoi praticare prezzi diversi — anche migliori — sul tuo canale diretto.";
+  "La rate parity (o parità tariffaria) è la clausola con cui un hotel si impegna a non offrire prezzi o condizioni migliori sui propri canali rispetto a quanto espone sulle OTA. In Italia ed Europa queste clausole sono ormai vietate: oggi puoi praticare prezzi diversi, anche migliori, sul tuo canale diretto.";
 
 // DefinedTermSet con le voci del glossario (oggi una): le pagine voce emettono
 // il DefinedTerm completo, qui c'è l'indice semantico della raccolta.

@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
-// Calcolatore commissioni OTA — tool libero, 100% lato client (nessun backend).
+// Calcolatore commissioni OTA, tool libero, 100% lato client (nessun backend).
 // Modello validato: vedi CONTESTO/Sito_web/metodo-calcolatore-ota.md.
 // Scelte: risparmio NETTO (sottrae il CAC del diretto); value uplift 516/312
 // solo come nota (non nel calcolo).
@@ -152,7 +152,7 @@ export function CommissionCalculator() {
           <Num label="Occupazione media" hint="annua" suffix="%" value={s.occ} onChange={set("occ")} max={100} />
           <Num label="Prezzo medio a notte (ADR)" suffix="€" value={s.adr} onChange={set("adr")} />
           <Num label="Quota prenotazioni via OTA" suffix="%" value={s.qOTA} onChange={set("qOTA")} max={100} />
-          <Num label="Commissione media OTA" hint="es. 15–18%" suffix="%" value={s.cOTA} onChange={set("cOTA")} max={100} step={0.5} />
+          <Num label="Commissione media OTA" hint="es. 15-18%" suffix="%" value={s.cOTA} onChange={set("cOTA")} max={100} step={0.5} />
 
           <details className="calc-adv">
             <summary>Ipotesi avanzate (modificabili)</summary>
@@ -190,7 +190,7 @@ export function CommissionCalculator() {
               <div className="v">{payback === null ? "Non si ripaga" : `${dec1(payback)} mesi`}</div>
               <div className="k">
                 Payback del booking engine ({eur(s.be)}/mese)
-                {payback === null ? " — con questi numeri il canone supera il risparmio" : ""}
+                {payback === null ? ", con questi numeri il canone supera il risparmio" : ""}
               </div>
             </div>
           </div>

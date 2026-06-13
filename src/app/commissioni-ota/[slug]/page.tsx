@@ -43,7 +43,7 @@ export default async function SpokePage({ params }: { params: Promise<{ slug: st
   const { content } = await compileMDX({
     source: article.body,
     components: mdxComponents,
-    // blockJS: false — MDX locale di prima parte (vedi pillar): consente le
+    // blockJS: false, MDX locale di prima parte (vedi pillar): consente le
     // props-espressione tipo <DiagramBars bars={[...]}/>.
     options: { parseFrontmatter: false, blockJS: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
   });

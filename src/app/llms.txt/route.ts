@@ -2,7 +2,7 @@ import { SITE } from "@/lib/site";
 import { getPillar, getSpokes, type Article } from "@/lib/articles";
 import { getIndexablePosts, MAGAZINE_BASE } from "@/lib/magazine";
 
-// /llms.txt — indice curato per gli assistenti AI (spec llmstxt.org).
+// /llms.txt, indice curato per gli assistenti AI (spec llmstxt.org).
 // Generato da SITE.url + articoli REALMENTE pubblicati: elenca solo pagine
 // esistenti (mai URL verso spoke non ancora portate → niente 404 che
 // danneggerebbero la citabilità). Si aggiorna da solo a ogni nuovo articolo.
@@ -40,13 +40,13 @@ export function GET() {
 
 > Hub di contenuti indipendente per gli albergatori italiani: guide pratiche, strumenti e analisi su come ridurre le commissioni delle OTA (Booking, Expedia) e far crescere le prenotazioni dirette. Un progetto di Green Consulting e Tourism Innovation Lab.
 
-## Guide — Disintermediazione e commissioni OTA
+## Guide alla disintermediazione e alle commissioni OTA
 ${guideLines}
 
 ## Strumenti
 - [Calcolatore commissioni OTA](${base}/strumenti/calcolatore-commissioni-ota): strumento gratuito (nessuna registrazione) per stimare quanto si paga di commissioni alle OTA ogni anno e quanto si risparmierebbe, al netto dei costi del diretto, spostando prenotazioni sul canale diretto; include confronto canali OTA/diretto/Airbnb e payback del booking engine.
 
-## Magazine — Notizie e analisi di settore
+## Magazine, notizie e analisi di settore
 - [Magazine](${base}${MAGAZINE_BASE}): notizie e analisi su distribuzione, OTA, AI e mercato alberghiero, lette per l'albergatore italiano.
 ${magazineLines}
 

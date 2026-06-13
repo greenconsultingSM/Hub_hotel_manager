@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/chi-siamo" },
   openGraph: {
     type: "website",
-    title: "Chi siamo — Hub Hotel Manager",
+    title: "Chi siamo · Hub Hotel Manager",
     description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare chi gestisce un hotel in autonomia a crescere.",
   },
 };
@@ -62,7 +62,7 @@ const clusterInArrivo = [
 const aboutLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "Chi siamo — Hub Hotel Manager",
+  name: "Chi siamo · Hub Hotel Manager",
   url: `${SITE.url}/chi-siamo`,
   inLanguage: "it-IT",
   about: {

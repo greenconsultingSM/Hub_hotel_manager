@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { cookies } from "next/headers";
 
 // Reader ebook (decisioni gate 2026-06-10/11): Capitolo 1 libero (anteprima
-// ~20%), capitoli 2-7 serviti SOLO dopo il gate email — il testo bloccato non
+// ~20%), capitoli 2-7 serviti SOLO dopo il gate email; il testo bloccato non
 // deve mai raggiungere il client, quindi il check sta nel server component.
 
 export const EBOOK = {
@@ -48,8 +48,8 @@ export function getChapter(num: number): EbookChapter | null {
   return getChapters().find((c) => c.num === num) ?? null;
 }
 
-// Token firmato del cookie di sblocco: HMAC dello slug. Non è una cassaforte —
-// il livello di protezione è "gate email" — ma evita lo sblocco per tentativi.
+// Token firmato del cookie di sblocco: HMAC dello slug. Non è una cassaforte
+// (il livello di protezione è "gate email"), ma evita lo sblocco per tentativi.
 const SECRET = process.env.EBOOK_GATE_SECRET ?? process.env.SUPABASE_SECRET_KEY ?? "hub-ebook-dev";
 export const EBOOK_COOKIE = "hub_ebook_gd";
 

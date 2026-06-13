@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ capitolo:
   const chap = getChapter(Number(capitolo));
   if (!chap) return {};
   return {
-    title: `${EBOOK.titolo} — Capitolo ${chap.num}: ${chap.titolo}`,
+    title: `${EBOOK.titolo} · Capitolo ${chap.num}: ${chap.titolo}`,
     description: chap.abstract,
     robots: { index: false, follow: true },
   };
@@ -58,14 +58,14 @@ export default async function ReaderPage({ params }: { params: Promise<{ capitol
                 key={c.num}
                 href={`/risorse/guida-disintermediazione/leggi/${c.num}`}
                 className={`rp-dot${c.num === num ? " is-current" : ""}`}
-                title={`Capitolo ${c.num} — ${c.titolo}`}
+                title={`Capitolo ${c.num}: ${c.titolo}`}
               >
                 {c.num}
               </Link>
             ))}
           </div>
           <h1>
-            Capitolo {chap.num} — {chap.titolo}
+            Capitolo {chap.num}: {chap.titolo}
           </h1>
           {chap.esclusivo && <span className="badge amber">Esclusivo dell&apos;ebook</span>}
         </header>
@@ -104,7 +104,7 @@ async function ReaderBody({ body }: { body: string }) {
   const { content } = await compileMDX({
     source: body,
     components: mdxComponents,
-    // blockJS: false — MDX locale di prima parte (vedi pagine cluster): serve
+    // blockJS: false, MDX locale di prima parte (vedi pagine cluster): serve
     // per le props-espressione di <DiagramBars bars={[...]}/>.
     options: { parseFrontmatter: false, blockJS: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
   });

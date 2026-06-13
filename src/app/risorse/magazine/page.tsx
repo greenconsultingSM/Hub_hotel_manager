@@ -18,13 +18,13 @@ import {
 import { collectionSchema } from "@/lib/magazine-schema";
 
 export const metadata: Metadata = {
-  title: "Magazine — notizie e analisi per il tuo hotel",
+  title: "Magazine · notizie e analisi per il tuo hotel",
   description:
     "Notizie di settore e analisi con dati e fonti verificate, spiegate per l'albergatore italiano: OTA, mercato, fisco, marketing e tecnologia.",
   alternates: { canonical: MAGAZINE_BASE },
   openGraph: {
     type: "website",
-    title: "Magazine — Hub Hotel Manager",
+    title: "Magazine · Hub Hotel Manager",
     description: "Notizie e analisi di settore per l'albergatore italiano.",
   },
 };
@@ -47,7 +47,7 @@ export default async function MagazineLanding({ searchParams }: { searchParams: 
 
   return (
     <>
-      <JsonLd data={collectionSchema("Magazine — Hub Hotel Manager", MAGAZINE_BASE, all)} />
+      <JsonLd data={collectionSchema("Magazine · Hub Hotel Manager", MAGAZINE_BASE, all)} />
 
       <div className="wrap">
         <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Risorse", href: "/risorse" }, { name: "Magazine" }]} />
@@ -61,7 +61,7 @@ export default async function MagazineLanding({ searchParams }: { searchParams: 
             </span>
             <h1>Notizie e analisi per chi gestisce un hotel</h1>
             <p className="lead">
-              Quello che succede nel settore — OTA, mercato, fisco, tecnologia — spiegato per l&apos;albergatore italiano,
+              Quello che succede nel settore (OTA, mercato, fisco, tecnologia) spiegato per l&apos;albergatore italiano,
               con i numeri e le fonti.
             </p>
           </div>

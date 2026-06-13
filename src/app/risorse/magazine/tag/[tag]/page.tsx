@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArchiveView } from "@/components/magazine/ArchiveView";
 import { getPostsByTag, getAllTags, getIndexablePosts, MAGAZINE_BASE } from "@/lib/magazine";
 
-// Pagine-tag: noindex,follow (thin content) — utili alla navigazione, fuori dall'indice.
+// Pagine-tag: noindex,follow (thin content), utili alla navigazione, fuori dall'indice.
 export function generateStaticParams() {
   return getAllTags().map((tag) => ({ tag }));
 }
@@ -11,13 +11,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
   const { tag } = await params;
   return {
-    title: `${tag} — Magazine`,
+    title: `${tag} · Magazine`,
     description: `Articoli del Magazine sul tema ${tag}.`,
     alternates: { canonical: `${MAGAZINE_BASE}/tag/${tag}` },
     robots: { index: false, follow: true },
     openGraph: {
       type: "website",
-      title: `${tag} — Magazine — Hub Hotel Manager`,
+      title: `${tag} · Magazine · Hub Hotel Manager`,
       description: `Articoli del Magazine sul tema ${tag}.`,
     },
   };

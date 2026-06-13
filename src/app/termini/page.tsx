@@ -40,8 +40,8 @@ export default function Termini() {
 
       <h2>2. Proprietà intellettuale dei contenuti</h2>
       <p>
-        Tutti i Contenuti del Sito — testi, guide, articoli, voci di glossario, immagini, grafici, diagrammi, loghi,
-        marchi, layout e codice — sono di proprietà del Titolare o dei rispettivi titolari dei diritti e sono protetti
+        Tutti i Contenuti del Sito (testi, guide, articoli, voci di glossario, immagini, grafici, diagrammi, loghi,
+        marchi, layout e codice) sono di proprietà del Titolare o dei rispettivi titolari dei diritti e sono protetti
         dalla normativa applicabile in materia di diritto d&apos;autore e proprietà industriale.
       </p>
       <p>
@@ -74,7 +74,7 @@ export default function Termini() {
       </ul>
       <p>Il Titolare può sospendere o limitare l&apos;accesso al Sito in caso di uso non conforme ai presenti Termini.</p>
 
-      <h2>4. Disclaimer — natura informativa dei contenuti</h2>
+      <h2>4. Disclaimer e natura informativa dei contenuti</h2>
       <p>
         I Contenuti del Sito, <strong>incluso il materiale di natura fiscale, normativa, di gestione e di revenue</strong>,
         hanno <strong>finalità esclusivamente informativa e divulgativa</strong> e{" "}
@@ -127,7 +127,7 @@ export default function Termini() {
       <p>I presenti Termini sono regolati dalla <strong>legge italiana</strong>.</p>
       <p>
         Per ogni controversia relativa all&apos;interpretazione, all&apos;esecuzione o alla validità dei presenti
-        Termini è competente il <strong>Foro di <PH>[città del foro competente — sede del Titolare]</PH></strong>, fatta
+        Termini è competente il <strong>Foro di <PH>[città del foro competente, sede del Titolare]</PH></strong>, fatta
         salva l&apos;applicazione del foro inderogabile previsto dalla legge a tutela del consumatore, ove applicabile.
       </p>
 

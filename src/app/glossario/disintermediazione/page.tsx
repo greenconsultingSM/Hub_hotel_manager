@@ -8,7 +8,7 @@ import { SubscribeSection } from "@/components/SubscribeSection";
 import { SITE } from "@/lib/site";
 
 const DEFINITION =
-  "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari — le OTA come Booking.com ed Expedia — spostando la prenotazione sul proprio canale diretto (sito web e motore di prenotazione). L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
+  "In ambito alberghiero, la disintermediazione è il processo con cui una struttura riduce o elimina il ruolo degli intermediari, le OTA come Booking.com ed Expedia, spostando la prenotazione sul proprio canale diretto (sito web e motore di prenotazione). L'obiettivo non è abbandonare i portali, ma riequilibrare i canali per trattenere una quota maggiore del margine su ogni camera venduta.";
 
 export const metadata: Metadata = {
   title: "Disintermediazione: cos'è",
@@ -78,7 +78,7 @@ export default function VoceDisintermediazione() {
               <p>
                 Il divario economico tra i due canali è netto. Secondo SiteMinder, il ricavo medio per prenotazione
                 generato dal sito diretto è di circa <span className="hl">US$516</span>, contro i{" "}
-                <span className="hl">US$312</span> di una prenotazione via OTA — quasi il 60% in più a parità di
+                <span className="hl">US$312</span> di una prenotazione via OTA, quasi il 60% in più a parità di
                 prenotazione (SiteMinder, Hotel Booking Trends 2025). Eppure gli hotel indipendenti continuano a cedere
                 circa il <span className="hl">61%</span> delle proprie prenotazioni ai portali (Skift Research).
               </p>
@@ -86,8 +86,8 @@ export default function VoceDisintermediazione() {
               <h2>Esempio pratico</h2>
               <p>
                 Un hotel riceve 100 prenotazioni al mese, tutte da Booking.com, con una commissione del 18%. Avviando
-                un percorso di disintermediazione — sito con motore di prenotazione, un vantaggio esclusivo per chi
-                prenota diretto, cura della relazione post-soggiorno — sposta 20 di quelle prenotazioni sul canale
+                un percorso di disintermediazione (sito con motore di prenotazione, un vantaggio esclusivo per chi
+                prenota diretto, cura della relazione post-soggiorno) sposta 20 di quelle prenotazioni sul canale
                 diretto. Su quelle 20 non versa più la commissione: il margine torna intero. Le altre 80 continuano ad
                 arrivare da Booking, che resta un canale utile per intercettare nuova domanda. È disintermediazione
                 &quot;intelligente&quot;: meno dipendenza da un solo canale, senza rinunciare alla visibilità.

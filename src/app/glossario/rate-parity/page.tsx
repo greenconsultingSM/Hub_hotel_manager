@@ -66,7 +66,7 @@ export default function VoceRateParity() {
               <p>
                 La rate parity è una clausola contrattuale, non una legge di mercato: nasce dagli accordi tra hotel e
                 portali per garantire che l&apos;OTA non venga &quot;scavalcata&quot; da un prezzo più basso sul canale
-                diretto. Per anni ha bloccato la leva più semplice a disposizione di un albergatore — premiare chi
+                diretto. Per anni ha bloccato la leva più semplice a disposizione di un albergatore, premiare chi
                 prenota sul proprio sito.
               </p>
 
@@ -75,7 +75,7 @@ export default function VoceRateParity() {
                 In Italia ogni clausola di parità è{" "}
                 <span className="hl">nulla per legge dal 2017</span> (Legge 124/2017, art. 1 comma 166). E
                 nell&apos;area economica europea le parity sono vietate dal Digital Markets Act, che rende gli hotel
-                liberi di praticare prezzi diversi — anche migliori — sui propri canali (Commissione UE, comunicato
+                liberi di praticare prezzi diversi, anche migliori, sui propri canali (Commissione UE, comunicato
                 IP/24/5828).
               </p>
               <p>

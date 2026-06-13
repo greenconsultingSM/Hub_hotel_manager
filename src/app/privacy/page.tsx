@@ -22,16 +22,16 @@ export default function Privacy() {
       <h2>1. Titolare del trattamento e contatti</h2>
       <p>
         Il titolare del trattamento dei dati personali raccolti tramite questo sito è{" "}
-        <strong>TOURISM INNOVATION LAB <PH>[ragione sociale completa — segnaposto]</PH></strong>, con sede legale in{" "}
-        <PH>[indirizzo, CAP, città, provincia — segnaposto]</PH>, <strong>P.IVA <PH>[numero — segnaposto]</PH></strong>.
+        <strong>TOURISM INNOVATION LAB <PH>[ragione sociale completa (segnaposto)]</PH></strong>, con sede legale in{" "}
+        <PH>[indirizzo, CAP, città, provincia (segnaposto)]</PH>, <strong>P.IVA <PH>[numero (segnaposto)]</PH></strong>.
       </p>
       <p>
         Per ogni richiesta relativa al trattamento dei tuoi dati personali o per l&apos;esercizio dei tuoi diritti puoi
-        scrivere a <PH>[email del titolare — segnaposto]</PH>.
+        scrivere a <PH>[email del titolare (segnaposto)]</PH>.
       </p>
       <p>
         <strong>Responsabile della protezione dei dati (DPO):</strong>{" "}
-        <PH>[nominativo e contatti del DPO, se nominato — segnaposto]</PH>.
+        <PH>[nominativo e contatti del DPO, se nominato (segnaposto)]</PH>.
       </p>
 
       <h2>2. Dati che raccogliamo</h2>
@@ -93,9 +93,9 @@ export default function Privacy() {
 
       <h2>5. Per quanto tempo conserviamo i dati</h2>
       <p>
-        Conserviamo il tuo indirizzo email <PH>[periodo di conservazione da definire — segnaposto]</PH>, ovvero fino a
+        Conserviamo il tuo indirizzo email <PH>[periodo di conservazione da definire (segnaposto)]</PH>, ovvero fino a
         quando non revochi il consenso o non ti disiscrivi; da quel momento il dato viene cancellato o reso anonimo
-        entro <PH>[termine da definire — segnaposto]</PH>.
+        entro <PH>[termine da definire (segnaposto)]</PH>.
       </p>
       <p>
         I dati raccolti tramite i cookie analitici sono conservati per i periodi indicati nella{" "}
@@ -106,7 +106,7 @@ export default function Privacy() {
       <p>I tuoi dati non vengono diffusi né venduti a terzi.</p>
       <p>
         Per le finalità sopra indicate i dati possono essere comunicati a{" "}
-        <strong>GREEN CONSULTING <PH>[ragione sociale — segnaposto]</PH></strong>, co-promotore del progetto, per
+        <strong>GREEN CONSULTING <PH>[ragione sociale (segnaposto)]</PH></strong>, co-promotore del progetto, per
         l&apos;eventuale gestione e instradamento delle richieste che ci invii.
       </p>
       <p>
@@ -115,7 +115,7 @@ export default function Privacy() {
         accordo:
       </p>
       <table>
-        <caption>Tabella — fornitori che trattano i dati come responsabili.</caption>
+        <caption>Tabella dei fornitori che trattano i dati come responsabili.</caption>
         <thead>
           <tr>
             <th>Fornitore</th>
@@ -157,8 +157,8 @@ export default function Privacy() {
       <p>
         Alcuni dei fornitori sopra indicati possono trattare i dati al di fuori dello Spazio Economico Europeo. In tal
         caso il trasferimento avviene nel rispetto degli artt. 44 e seguenti del GDPR, sulla base di{" "}
-        <PH>[garanzie adeguate da verificare — segnaposto]</PH> (ad esempio decisione di adeguatezza della Commissione
-        europea, adesione al Data Privacy Framework UE–USA o Clausole Contrattuali Standard).
+        <PH>[garanzie adeguate da verificare (segnaposto)]</PH> (ad esempio decisione di adeguatezza della Commissione
+        europea, adesione al Data Privacy Framework UE-USA o Clausole Contrattuali Standard).
       </p>
 
       <h2>8. I tuoi diritti</h2>
@@ -173,7 +173,7 @@ export default function Privacy() {
         <li><strong>revocare il consenso</strong> in qualsiasi momento, senza che ciò pregiudichi la liceità del trattamento basato sul consenso prestato prima della revoca.</li>
       </ul>
       <p>
-        Per esercitare questi diritti puoi scrivere a <PH>[email del titolare/DPO — segnaposto]</PH>. Puoi inoltre
+        Per esercitare questi diritti puoi scrivere a <PH>[email del titolare/DPO (segnaposto)]</PH>. Puoi inoltre
         disiscriverti dalle nostre comunicazioni in ogni momento tramite l&apos;apposito link presente in fondo a
         ciascuna email.
       </p>

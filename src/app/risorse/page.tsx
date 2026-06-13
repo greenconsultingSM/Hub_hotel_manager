@@ -7,13 +7,13 @@ import { getAllMagazinePosts, MAGAZINE_BASE } from "@/lib/magazine";
 import { MagazineCard } from "@/components/magazine/MagazineCard";
 
 export const metadata: Metadata = {
-  title: "Risorse — Magazine e guide per il tuo hotel",
+  title: "Risorse · Magazine e guide per il tuo hotel",
   description:
     "Le risorse di Hub Hotel Manager: il Magazine con le notizie del settore e le guide pratiche per far crescere il tuo hotel.",
   alternates: { canonical: "/risorse" },
   openGraph: {
     type: "website",
-    title: "Risorse — Hub Hotel Manager",
+    title: "Risorse · Hub Hotel Manager",
     description: "Magazine e guide pratiche per l'albergatore italiano.",
   },
 };

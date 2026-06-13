@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: { params: Promise<{ cat: stri
   // 2 articoli pubblicati; prima resta noindex,follow (navigabile, crawlabile).
   const count = getPostsByCategory(cat).filter((p) => p.frontmatter.index !== false).length;
   return {
-    title: `${c.label} — Magazine`,
+    title: `${c.label} · Magazine`,
     description: c.descrizione,
     alternates: { canonical: `${MAGAZINE_BASE}/categoria/${cat}` },
     ...(count < 2 ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "website",
-      title: `${c.label} — Magazine — Hub Hotel Manager`,
+      title: `${c.label} · Magazine · Hub Hotel Manager`,
       description: c.descrizione,
     },
   };
@@ -47,7 +47,7 @@ export default async function CategoryPage({
 
   return (
     <>
-      <JsonLd data={collectionSchema(`${c.label} — Magazine`, base, posts)} />
+      <JsonLd data={collectionSchema(`${c.label} · Magazine`, base, posts)} />
       <ArchiveView
         crumbs={[
           { name: "Home", href: "/" },

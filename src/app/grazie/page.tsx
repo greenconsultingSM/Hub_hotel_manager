@@ -7,7 +7,7 @@ import { LeadEvent } from "./LeadEvent";
 // next-step per provenienza + evento GA4 generate_lead (in LeadEvent).
 // noindex: pagina di servizio, non deve comparire in SERP.
 export const metadata: Metadata = {
-  title: "Grazie — sei dei nostri",
+  title: "Grazie, sei dei nostri",
   robots: { index: false, follow: false },
 };
 
@@ -57,7 +57,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
         <p className="lead" style={{ margin: "16px auto 0", maxWidth: 560 }}>
           {isWaitlist
             ? "Ti avviseremo via email appena la guida è pronta. Niente spam, promesso."
-            : "Iscrizione registrata. Ti scriviamo solo quando esce qualcosa di utile — niente spam, puoi disiscriverti quando vuoi."}
+            : "Iscrizione registrata. Ti scriviamo solo quando esce qualcosa di utile, niente spam, puoi disiscriverti quando vuoi."}
         </p>
         <div
           style={{

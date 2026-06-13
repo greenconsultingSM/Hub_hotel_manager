@@ -52,7 +52,7 @@ export function EbookGate({ source }: { source: string }) {
       </span>
       <h2>Sblocca tutta la guida con la tua email</h2>
       <p>
-        Il Capitolo 1 è libero. Lascia nome ed email e leggi subito gli altri sei — incluse le parti che esistono solo
+        Il Capitolo 1 è libero. Lascia nome ed email e leggi subito gli altri sei, comprese le parti che esistono solo
         qui: il metodo in 90 giorni e l&apos;audit in 20 domande. Il PDF ti arriva via email appena disponibile.
       </p>
       <form onSubmit={handleSubmit}>

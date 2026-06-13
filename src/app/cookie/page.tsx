@@ -15,7 +15,7 @@ export default function Cookie() {
     <LegalLayout title="Cookie policy" updated="8 giugno 2026">
       <h2>1. Cosa sono i cookie</h2>
       <p>
-        I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo — computer, tablet o smartphone —
+        I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo (computer, tablet o smartphone)
         mentre li navighi. Servono a far funzionare correttamente le pagine, a ricordare le tue scelte e, in alcuni
         casi, a raccogliere informazioni statistiche su come usi il sito. Accanto ai cookie esistono tecnologie simili
         (come i cosiddetti <em>local storage</em> e i <em>pixel</em>): in questa policy le chiamiamo tutte
@@ -70,9 +70,9 @@ export default function Cookie() {
       </p>
       <p>Dal banner puoi:</p>
       <ul>
-        <li><strong>Accettare</strong> — attivi i cookie analitici;</li>
-        <li><strong>Rifiutare</strong> — il sito continua a funzionare con i soli cookie tecnici;</li>
-        <li><strong>Preferenze</strong> — scegli nel dettaglio quali categorie autorizzare.</li>
+        <li><strong>Accettare</strong>, per attivare i cookie analitici;</li>
+        <li><strong>Rifiutare</strong>, per continuare con i soli cookie tecnici;</li>
+        <li><strong>Preferenze</strong>, per scegliere nel dettaglio quali categorie autorizzare.</li>
       </ul>
       <p>
         Il fornitore di questo servizio è <strong>Google</strong> (Google Ireland Ltd. / Google LLC){" "}
@@ -88,7 +88,7 @@ export default function Cookie() {
       <h2>4. Tabella dei cookie</h2>
       <p>Di seguito l&apos;elenco dei cookie usati su questo sito, con finalità, durata e fornitore.</p>
       <table>
-        <caption>Tabella — cookie impostati sul sito (da completare in fase di build).</caption>
+        <caption>Tabella dei cookie impostati sul sito (da completare in fase di build).</caption>
         <thead>
           <tr>
             <th>Nome</th>
@@ -151,7 +151,7 @@ export default function Cookie() {
         e come esercitare i tuoi diritti, consulta la nostra <Link href="/privacy">privacy policy</Link>.
       </p>
       <p>
-        <PH>[Dati di contatto del titolare Tourism Innovation Lab e dell&apos;eventuale responsabile/DPO — da inserire in fase di validazione legale.]</PH>
+        <PH>[Dati di contatto del titolare Tourism Innovation Lab e dell&apos;eventuale responsabile/DPO, da inserire in fase di validazione legale.]</PH>
       </p>
     </LegalLayout>
   );

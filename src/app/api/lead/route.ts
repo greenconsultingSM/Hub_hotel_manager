@@ -18,7 +18,7 @@ function withEbookUnlock(res: NextResponse, source: string): NextResponse {
   return res;
 }
 
-// POST /api/lead — unica porta d'ingresso dei lead del sito.
+// POST /api/lead, unica porta d'ingresso dei lead del sito.
 // Flusso (decisioni gate 2026-06-10/11): valida → INSERT su Supabase (fonte di
 // verità: il lead è salvo QUI) → sync ActiveCampaign best-effort (se fallisce o
 // non è configurato: ac_synced=false, recupero via backfill). Mai bloccare
@@ -35,7 +35,7 @@ const SOURCES_VALIDE = /^[a-z0-9-]{2,64}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 // Rate-limit per IP, in-memory best-effort (per istanza serverless: protezione
-// di base contro i burst, non un WAF — il vero limite duro è a livello Vercel).
+// di base contro i burst, non un WAF; il vero limite duro è a livello Vercel).
 const hits = new Map<string, number[]>();
 function rateLimited(ip: string): boolean {
   const now = Date.now();
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "servizio non disponibile" }, { status: 503 });
   }
 
-  // 1. Supabase — fonte di verità. Client per-request (serverless-friendly).
+  // 1. Supabase, fonte di verità. Client per-request (serverless-friendly).
   const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, {
     auth: { persistSession: false },
   });
@@ -119,7 +119,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "salvataggio non riuscito, riprova" }, { status: 500 });
   }
 
-  // 2. ActiveCampaign — best-effort: l'esito non cambia la risposta all'utente.
+  // 2. ActiveCampaign, best-effort: l'esito non cambia la risposta all'utente.
   const ac = await syncLeadToAc({ email, nome, source, destinazione });
   if (ac.synced) {
     await supabase

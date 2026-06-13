@@ -12,16 +12,16 @@ import { MagazineCard } from "@/components/magazine/MagazineCard";
 const PILLAR = "/commissioni-ota";
 const CALCOLATORE = "/strumenti/calcolatore-commissioni-ota";
 
-// Metadata della home: title assoluto (niente template "%s — ...") e
+// Metadata della home: title assoluto (niente template "%s · ...") e
 // description orientata alle query di ingresso (commissioni OTA, diretto).
 export const metadata: Metadata = {
-  title: { absolute: "Hub Hotel Manager — Guide e strumenti per il tuo hotel" },
+  title: { absolute: "Hub Hotel Manager · Guide e strumenti per il tuo hotel" },
   description:
     "L'hub per chi gestisce un hotel in autonomia in Italia: guide pratiche, strumenti e analisi per ridurre le commissioni OTA, disintermediare e far crescere le prenotazioni dirette del tuo hotel.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Hub Hotel Manager — Guide e strumenti per il tuo hotel",
+    title: "Hub Hotel Manager · Guide e strumenti per il tuo hotel",
     description:
       "Guide pratiche, strumenti e analisi per ridurre le commissioni OTA e far crescere le prenotazioni dirette del tuo hotel.",
     url: SITE.url,
@@ -126,7 +126,7 @@ export default function Home() {
             prenotazione.
           </p>
           {/* Una sola cattura email in pagina (banda finale): qui restano le due
-              azioni di ingresso — guide e calcolatore. */}
+              azioni di ingresso: guide e calcolatore. */}
           <div className="hero-cta reveal" data-d="3">
             <Link className="btn btn-primary btn-lg" href={PILLAR}>
               Esplora le guide <Icon name="arrow" />
@@ -260,7 +260,7 @@ export default function Home() {
             <span className="eyebrow">Dal Magazine</span>
             <h2 style={{ marginTop: 14 }}>Le ultime per il tuo hotel</h2>
             <p className="lead">
-              Notizie e analisi dal settore — OTA, mercato, tecnologia — spiegate per l&apos;albergatore italiano, con i
+              Notizie e analisi dal settore (OTA, mercato, tecnologia), spiegate per l&apos;albergatore italiano, con i
               numeri e le fonti.
             </p>
           </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/risorse/guida-disintermediazione" },
   openGraph: {
     type: "website",
-    title: "Guida gratuita alla disintermediazione — Hub Hotel Manager",
+    title: "Guida gratuita alla disintermediazione · Hub Hotel Manager",
     description: "Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia.",
   },
 };
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
 const learn = [
   ["Quanto pesano davvero le commissioni", " sul margine di ogni camera, con il costo reale messo nero su bianco."],
   ["Le leve concrete per ridurle", " senza perdere visibilità sui portali."],
-  ["Gli aspetti fiscali spiegati con chiarezza", " — deducibilità, IVA e fattura, aggiornati alle regole 2026."],
+  ["Gli aspetti fiscali spiegati con chiarezza", ", dalla deducibilità all'IVA e alla fattura, aggiornati alle regole 2026."],
   ["Come costruire il canale diretto", " passo dopo passo, in modo misurabile."],
   ["Gli errori da evitare", " nel percorso di disintermediazione, prima che costino margine."],
 ];
 
 // Indice reale dell'ebook (master pronto, giugno 2026). Le card aprono il
 // READER (decisione 2026-06-11): il Capitolo 1 si legge libero, gli altri
-// aprono la pagina bloccata col gate email — la prova del metodo è l'ebook
+// aprono la pagina bloccata col gate email. La prova del metodo è l'ebook
 // stesso, non gli articoli (che restano linkati dalle "Risorse correlate").
 // Tuple: [etichetta, titolo, testo, gratis, esclusivo]
 const chapters: [string, string, string, boolean, boolean][] = [
@@ -63,13 +63,13 @@ export default function GuidaRisorsa() {
           <div className="res-hero">
             <div className="reveal">
               <span className="badge amber">
-                <Icon name="book" /> Ebook gratuito — leggilo online
+                <Icon name="book" /> Ebook gratuito, leggilo online
               </span>
               <h1>Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia</h1>
               <p className="res-sub">
                 La guida completa alla disintermediazione, scritta per chi gestisce un hotel in autonomia. Ti aiuta a
                 capire quanto pesano davvero le commissioni, a ridurle con le leve giuste e a costruire un canale diretto
-                che cresce nel tempo. Il Capitolo 1 si legge gratis; con la tua email sblocchi tutto il resto.
+                che cresce nel tempo. Il primo capitolo è libero; per leggere il resto ti basta la tua email.
               </p>
               <div className="learn-list">
                 {learn.map(([strong, rest]) => (
@@ -88,12 +88,12 @@ export default function GuidaRisorsa() {
               {/* Assaggio in stile ebook: le prime righe vere del Capitolo 1,
                   che si legge libero nel reader (gate dal Capitolo 2). */}
               <div className="reader-teaser">
-                <span className="rt-kicker">Dal Capitolo 1 — anteprima libera</span>
+                <span className="rt-kicker">Dal Capitolo 1, anteprima libera</span>
                 <h3>Quanto ti costano davvero le OTA</h3>
                 <p>
                   C&apos;è un numero che la maggior parte degli albergatori non sa dire a memoria: quanto
-                  ha pagato di commissioni ai portali negli ultimi dodici mesi. Non la percentuale del contratto —
-                  quella la conoscono tutti — ma la cifra esatta, in euro, che è uscita dalla cassa. Questo capitolo
+                  ha pagato di commissioni ai portali negli ultimi dodici mesi. Non la percentuale del contratto,
+                  quella la conoscono tutti, ma la cifra esatta, in euro, che è uscita dalla cassa. Questo capitolo
                   serve a farti arrivare a quel numero, e a capire perché pesa molto più di quanto sembri…
                 </p>
                 <Link className="text-link" href="/risorse/guida-disintermediazione/leggi/1">
@@ -132,10 +132,10 @@ export default function GuidaRisorsa() {
         <div className="wrap">
           <div className="lead-band reveal">
             <div className="lb-left">
-              <h2>Leggi il Capitolo 1 gratis, sblocca il resto con l&apos;email</h2>
+              <h2>Leggi il primo capitolo, il resto con la tua email</h2>
               <p>
                 La guida si legge online, capitolo per capitolo: il primo è libero. Con nome ed email sblocchi subito
-                gli altri sei — incluse le parti che esistono solo qui — e ricevi il PDF appena disponibile.
+                gli altri sei, incluse le parti che esistono solo qui, e ricevi il PDF appena disponibile.
               </p>
             </div>
             <SubscribeForm
