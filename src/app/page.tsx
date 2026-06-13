@@ -54,15 +54,15 @@ const stats = [
 const personas = [
   {
     icon: "user",
-    title: "Albergatore indipendente",
-    text: "Gestisci un hotel piccolo e indossi dieci cappelli al giorno. Paghi troppe commissioni alle OTA e vuoi iniziare a vendere diretto, senza gergo tecnico e senza perdere visibilità.",
+    title: "Gestisci tutto in prima persona",
+    text: "Indossi dieci cappelli al giorno: titolare, direttore, a volte receptionist. Paghi troppe commissioni alle OTA e vuoi iniziare a vendere diretto, senza gergo tecnico e senza perdere visibilità.",
     ctaText: "Vai alla guida sulle commissioni OTA",
     ctaHref: PILLAR,
   },
   {
     icon: "users",
-    title: "Struttura più strutturata",
-    text: "Coordini un team e numeri da far crescere. Vuoi ridurre la dipendenza dalle OTA, riequilibrare i canali e capire quanto pesano davvero le commissioni sul tuo margine.",
+    title: "Coordini un team",
+    text: "Un team da guidare e numeri da far crescere. Vuoi ridurre la dipendenza dalle OTA, riequilibrare i canali e capire quanto pesano davvero le commissioni sul tuo margine.",
     ctaText: "Calcola il peso delle commissioni",
     ctaHref: CALCOLATORE,
   },
