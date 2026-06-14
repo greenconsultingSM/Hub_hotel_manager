@@ -31,9 +31,16 @@ export function articleSchema(post: MagazinePost): Record<string, unknown> {
           sameAs: SITE.partners.map((p) => p.url),
           parentOrganization: { "@id": `${SITE.url}/#organization` },
         },
-    publisher: { "@type": "Organization", "@id": `${SITE.url}/#organization`, name: SITE.name, url: SITE.url },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      logo: { "@type": "ImageObject", url: `${SITE.url}/opengraph-image` },
+    },
     mainEntityOfPage: url,
     articleSection: categoriaLabel(fm.categoria),
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".pillar-head h1", ".pillar-head .intro"] },
     ...(fm.tags && fm.tags.length ? { keywords: fm.tags.join(", ") } : {}),
   };
 }

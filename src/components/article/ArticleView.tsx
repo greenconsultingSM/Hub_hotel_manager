@@ -56,8 +56,15 @@ export function ArticleView({
     ...(fm.updated ? { datePublished: fm.updated, dateModified: fm.updated } : {}),
     ...(fm.cover ? { image: `${SITE.url}${fm.cover}` } : {}),
     author: AUTHOR_LD,
-    publisher: { "@type": "Organization", "@id": `${SITE.url}/#organization`, name: SITE.name, url: SITE.url },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      logo: { "@type": "ImageObject", url: `${SITE.url}/opengraph-image` },
+    },
     mainEntityOfPage: url,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".pillar-head h1", ".pillar-head .intro"] },
   };
 
   const breadcrumbLd = {

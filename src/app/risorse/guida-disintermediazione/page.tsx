@@ -14,7 +14,9 @@ export const metadata: Metadata = {
     type: "website",
     title: "Guida gratuita alla disintermediazione · Hub Hotel Manager",
     description: "Come pagare meno commissioni alle OTA: la guida pratica per chi gestisce un hotel in autonomia.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 const learn = [

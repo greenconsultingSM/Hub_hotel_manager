@@ -40,6 +40,8 @@ export function GET() {
 
 > Hub di contenuti indipendente per gli albergatori italiani: guide pratiche, strumenti e analisi su come ridurre le commissioni delle OTA (Booking, Expedia) e far crescere le prenotazioni dirette. Un progetto di Green Consulting e Tourism Innovation Lab.
 
+Testo integrale dei contenuti: ${base}/llms-full.txt
+
 ## Guide alla disintermediazione e alle commissioni OTA
 ${guideLines}
 

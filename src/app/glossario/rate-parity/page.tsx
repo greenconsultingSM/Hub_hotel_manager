@@ -20,7 +20,9 @@ export const metadata: Metadata = {
     title: "Rate parity: cos'è (voce di glossario)",
     description:
       "Cos'è la rate parity in ambito alberghiero: definizione, esempio pratico e perché le clausole di parità tariffaria sono ormai vietate.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 const definedTermLd = {

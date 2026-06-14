@@ -14,7 +14,9 @@ export const metadata: Metadata = {
     type: "website",
     title: "Glossario dell'albergatore · Hub Hotel Manager",
     description: "I termini chiave di distribuzione, commissioni e ricavi, spiegati in modo chiaro.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 const DEF =

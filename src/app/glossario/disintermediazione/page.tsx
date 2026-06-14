@@ -20,7 +20,9 @@ export const metadata: Metadata = {
     title: "Disintermediazione: cos'è (voce di glossario)",
     description:
       "Cos'è la disintermediazione in ambito alberghiero: definizione, esempio pratico e perché conviene il canale diretto.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 const definedTermLd = {

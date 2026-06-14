@@ -14,7 +14,9 @@ export const metadata: Metadata = {
     type: "website",
     title: "Chi siamo · Hub Hotel Manager",
     description: "Uno spazio creato da Green Consulting e Tourism Innovation Lab per aiutare chi gestisce un hotel in autonomia a crescere.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 type DoCard = { icon: string; title: string; text: string; href: string; cta: string; soon?: boolean };

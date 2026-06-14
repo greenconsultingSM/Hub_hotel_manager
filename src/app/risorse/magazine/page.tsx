@@ -21,12 +21,17 @@ export const metadata: Metadata = {
   title: "Magazine · notizie e analisi per il tuo hotel",
   description:
     "Notizie di settore e analisi con dati e fonti verificate, spiegate per l'albergatore italiano: OTA, mercato, fisco, marketing e tecnologia.",
-  alternates: { canonical: MAGAZINE_BASE },
+  alternates: {
+    canonical: MAGAZINE_BASE,
+    types: { "application/rss+xml": `${MAGAZINE_BASE}/feed.xml` },
+  },
   openGraph: {
     type: "website",
     title: "Magazine · Hub Hotel Manager",
     description: "Notizie e analisi di settore per l'albergatore italiano.",
+    images: ["/opengraph-image"],
   },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
 
 const PER_PAGE = 9;
